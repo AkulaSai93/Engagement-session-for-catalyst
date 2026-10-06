@@ -25,3 +25,4 @@ body { @apply bg-bg text-ink antialiased; }
 /* Car on the roadmap road: slight engine rumble while driving */
 .car.driving { animation: rumble .12s linear infinite alternate; }
 @keyframes rumble { to { transform: translateY(.6px); } }
+@keyframes slide { from { transform: translateX(-100%); } }

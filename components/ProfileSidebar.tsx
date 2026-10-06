@@ -9,9 +9,9 @@ const items = [
   { icon: Radio, title: "Engagement", sub: "Live sessions & opportunities", active: true },
 ];
 
-export function ProfileSidebar() {
+export function ProfileSidebar({ className = "hidden lg:block lg:sticky lg:top-[128px]" }: { className?: string }) {
   return (
-    <aside className="h-max rounded-[20px] border border-line bg-white p-6.5 lg:sticky lg:top-[128px]">
+    <aside className={`h-max rounded-[20px] border border-line bg-white p-6.5 ${className}`}>
       <h2 className="text-xl font-semibold">My Profile</h2>
       <p className="mt-1.5 text-[13px] leading-snug text-muted">Manage your personal information and preferences</p>
       <div className="my-5 flex flex-col items-center border-y border-line py-5">

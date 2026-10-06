@@ -31,7 +31,7 @@ export function PastRecordings() {
           ))}
         </div>
 
-        <a href={f.href} className="group relative flex min-h-[300px] items-end overflow-hidden rounded-xl p-5 text-white transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(15,15,30,.12)]">
+        <a href={f.href} className="group relative order-first flex min-h-[300px] items-end overflow-hidden rounded-xl p-5 text-white lg:order-last transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(15,15,30,.12)]">
           <Image src={f.image} alt="" fill className="object-cover transition duration-500 group-hover:scale-105" sizes="(max-width:1024px) 100vw, 40vw" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent from-40% to-black/90" />
           <span className="absolute left-1/2 top-1/2 grid size-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-white/20 text-brand backdrop-blur-md transition group-hover:scale-110"><Play className="size-5 fill-current" /></span>

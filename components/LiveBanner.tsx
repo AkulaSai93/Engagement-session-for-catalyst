@@ -16,7 +16,7 @@ export function LiveBanner() {
           <span className="size-1.5 animate-blink rounded-full bg-white" /> LIVE NOW
         </span>
         {/* Mentor, top-right */}
-        <div className="absolute right-5 top-3.5 flex items-center gap-2.5 rounded-full border border-white/15 bg-black/40 py-1 pl-1 pr-3.5 backdrop-blur-md">
+        <div className="mt-2.5 flex w-max items-center gap-2.5 rounded-full sm:absolute sm:right-5 sm:top-3.5 sm:mt-0 border border-white/15 bg-black/40 py-1 pl-1 pr-3.5 backdrop-blur-md">
           <Image src={s.avatar} alt={s.speaker} width={34} height={34} className="size-[34px] rounded-full ring-2 ring-white/40" />
           <span className="leading-tight">
             <b className="block text-[12px]">{s.speaker}</b>

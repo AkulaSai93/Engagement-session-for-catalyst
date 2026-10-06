@@ -79,7 +79,7 @@ export function Roadmap() {
 
   const wide = w >= 640;
   const d = wide ? buildPath(w) : `M 20 0 V ${N * 110 + CAP}`;
-  const height = wide ? H : N * 110 + CAP;
+  const height = wide ? H : undefined;
 
   // Place stages at equal distances along the road.
   useLayoutEffect(() => {
@@ -147,14 +147,14 @@ export function Roadmap() {
       <SectionHeader eyebrow="Roadmap" lead="Your 2-year journey:" title={`${N} Stages, One Clear Path`} />
 
       {/* Map-like backdrop: soft colour glows over a faint dot grid */}
-      <div className="relative mt-8 overflow-hidden rounded-[28px] border border-line bg-white px-6 pb-24 pt-14 sm:px-10">
+      <div className="relative mt-8 overflow-hidden rounded-[28px] border border-line bg-white px-5 pb-8 pt-8 sm:px-10 sm:pb-24 sm:pt-14">
         <div aria-hidden className="pointer-events-none absolute inset-0 [background-image:radial-gradient(rgba(15,15,30,.09)_1px,transparent_1px)] [background-size:22px_22px]" />
         <div aria-hidden className="pointer-events-none absolute -left-24 top-10 size-[420px] rounded-full bg-[#FDEDED] opacity-80 blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute -right-24 top-1/3 size-[420px] rounded-full bg-[#DFEAFD] opacity-80 blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute bottom-0 left-1/4 size-[420px] rounded-full bg-[#F0EBFB] opacity-80 blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute -bottom-20 -right-10 size-[360px] rounded-full bg-[#EAF4EC] opacity-80 blur-3xl" />
       <div ref={track} className="relative" style={{ height }}>
-        {w > 0 && (
+        {wide && (
           <svg width={w} height={height} className="absolute inset-0 overflow-visible">
             <defs>
               <linearGradient id="road-fill" x1="0" y1="0" x2="0" y2={height} gradientUnits="userSpaceOnUse">
@@ -190,14 +190,14 @@ export function Roadmap() {
           </div>
         )}
 
-        {len > 0 && (
+        {wide && len > 0 && (
           <div className="pointer-events-none absolute left-0 top-0 z-30"
             style={{ transform: `translate(${car.x - 22}px, ${car.y - 12}px) rotate(${car.angle}deg)`, transformOrigin: "22px 12px" }}>
             <Car driving={driving} />
           </div>
         )}
 
-        {stops.map((p, i) => {
+        {wide && stops.map((p, i) => {
           const s = roadmap[i], lit = reached(i), now = s.status === "current", Icon = STAGE_ICONS[i % STAGE_ICONS.length];
           const [bg, tint, accent] = TILE_COLORS[i % TILE_COLORS.length];
           const details = (
@@ -247,6 +247,63 @@ export function Roadmap() {
             </div>
           );
         })}
+
+        {/* Mobile: same road, car and coloured tiles — laid out as a straight road down the left */}
+        {w > 0 && !wide && (
+          <ol className="relative pb-14 pl-14">
+            {/* asphalt */}
+            <span className="absolute bottom-0 left-[8px] top-0 w-[26px] rounded-full bg-[#3B3B46] shadow-[0_0_0_4px_rgba(15,15,30,.06)]" />
+            {/* stretch already driven */}
+            <span className="absolute left-[8px] top-0 w-[26px] rounded-full"
+              style={{ height: `${progress * 100}%`, background: "linear-gradient(#FF3B5C, #E11D48)", boxShadow: "0 0 14px rgba(225,29,72,.45)" }} />
+            {/* dashed centre line */}
+            <span className="absolute bottom-0 left-[20px] top-0 w-[2px]"
+              style={{ background: "repeating-linear-gradient(#fff 0 10px, transparent 10px 22px)", opacity: 0.9 }} />
+            {/* finish line */}
+            <span className="absolute bottom-0 left-[8px] h-2.5 w-[26px]" style={{ background: "repeating-conic-gradient(#111 0 25%, #fff 0 50%) 0 0 / 9px 9px" }} />
+            {/* car, nose pointing down the road */}
+            <span className="pointer-events-none absolute left-[21px] z-20"
+              style={{ top: `calc(${progress * 100}% - 12px)`, transform: "translate(-50%, 0) rotate(90deg)" }}>
+              <Car driving={driving} />
+            </span>
+
+            {roadmap.map((s, i) => {
+              const lit = progress * N >= i + 0.15;
+              const now = s.status === "current";
+              const Icon = STAGE_ICONS[i % STAGE_ICONS.length];
+              const [, tint, accent] = TILE_COLORS[i % TILE_COLORS.length];
+              return (
+                <li key={i} className={`relative pb-8 transition-all duration-300 ${lit ? "opacity-100" : "opacity-45"}`}>
+                  {/* stop marker on the road */}
+                  <span className="absolute -left-[41px] top-4 z-10 size-3.5 rounded-full border-2 border-white"
+                    style={{ background: lit ? accent : "#9CA3AF" }} />
+                  {/* Big step number, then the details beside a thin rule */}
+                  <p className="text-[44px] font-extrabold leading-none tracking-tight transition-colors duration-300"
+                    style={{ color: lit ? accent : "rgba(15,15,30,.12)" }}>
+                    {String(i + 1).padStart(2, "0")}<span style={{ color: lit ? tint : "rgba(15,15,30,.12)" }}>.</span>
+                  </p>
+                  <div className="mt-3 border-l-2 pl-4" style={{ borderColor: lit ? tint : "var(--color-line)" }}>
+                    <p className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[10px] font-bold uppercase tracking-[1.2px]" style={{ color: lit ? accent : undefined }}>
+                      <Icon className="size-3.5" /> Sem {s.sem} · {s.period}
+                      {now && <span className="whitespace-nowrap text-brand">● You are here</span>}
+                    </p>
+                    <h4 className="mt-1 text-[17px] font-bold leading-snug">{s.title}</h4>
+                    <p className="mt-1 text-[13px] leading-relaxed text-muted">{s.body}</p>
+                    {s.hackathon && (
+                      <p className="mt-1.5 flex items-center gap-1 text-[12px] font-semibold text-gold"><Trophy className="size-3.5" /> {s.hackathon}</p>
+                    )}
+                  </div>
+                </li>
+              );
+            })}
+            <li className="absolute -bottom-1 left-14 text-[11px] font-bold uppercase tracking-[1.5px]">
+              <span className={progress >= 0.999 ? "text-brand" : "text-dim"}>Finish line</span>
+              <span className="block text-[11px] font-medium normal-case tracking-normal text-muted">
+                {progress >= 0.999 ? "Two years done. Industry-ready." : `${N} stages · 24 months`}
+              </span>
+            </li>
+          </ol>
+        )}
       </div>
       </div>
     </section>
