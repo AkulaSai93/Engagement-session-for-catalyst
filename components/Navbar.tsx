@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { ChevronDown, Menu, Phone, User, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { ProfileSidebar } from "./ProfileSidebar";
 
 const links = ["Home", "Curriculum", "Student Journey", "BuildSpace", "FAQs"];
@@ -21,24 +21,31 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <nav className="sticky top-0 z-40 border-b border-line bg-white">
-      <div className="mx-auto flex h-16 max-w-[1440px] items-center gap-3 px-4 sm:px-14 lg:h-[88px]">
+    <nav className="sticky top-0 z-40 border-b-[0.5px] border-[#e5e7eb] bg-white">
+      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-3 px-4 py-3.5 sm:px-[52px] lg:py-[26px]">
         <button aria-label="Open menu" onClick={() => setOpen(true)}
           className="-ml-1 grid size-10 place-items-center rounded-lg transition hover:bg-bg lg:hidden">
           <Menu className="size-6" />
         </button>
-        <Image src="/images/logos/upgrad-sot.webp" alt="upGrad School of Technology" width={467} height={144} priority unoptimized className="h-8 w-auto lg:h-9" />
-        <div className="mx-auto hidden gap-8 text-[15px] lg:flex">
+        <Image src="/images/logos/upgrad-catalyst.png" alt="upGrad School of Technology | Catalyst" width={187} height={34} priority unoptimized className="mr-auto h-[30px] w-auto lg:mr-0 lg:h-[34px]" />
+        <div className="hidden gap-[30px] text-[15.2px] lg:flex">
           {links.map((l) => (
-            <a key={l} href="#" className="transition hover:text-brand">{l}</a>
+            <a key={l} href="#" className="text-black/90 transition hover:text-brand">{l}</a>
           ))}
         </div>
-        <div className="ml-auto flex items-center gap-3 lg:ml-0 lg:gap-4">
-          <a href="#" className="flex items-center gap-2 rounded-lg bg-ink px-3 py-2 text-[13px] text-white">
-            <Phone className="size-4" /><span className="hidden sm:inline">Request Call</span>
+        <div className="flex items-center gap-[15px]">
+          <a href="#" className="flex items-center gap-1.5 rounded-lg bg-[#040404] px-3 py-1.5 text-[12.85px] leading-[19px] text-white">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/icons/phone.svg" alt="" width={14} height={14} className="size-3.5" />
+            <span className="hidden sm:inline">Request Call</span>
           </a>
-          <button aria-label="Account" className="hidden items-center gap-2 text-muted sm:flex">
-            <span className="grid size-8 place-items-center rounded-full bg-bg"><User className="size-4" /></span><ChevronDown className="size-4" />
+          <button aria-label="Account menu" className="hidden items-center gap-2 p-0.5 sm:flex">
+            <span className="grid size-8 place-items-center rounded-full border border-[#ececec] bg-[#f3f4f6]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/icons/user.svg" alt="" width={15} height={15} className="size-[15px]" />
+            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/icons/chevron-down.svg" alt="" width={13} height={13} className="size-[13px]" />
           </button>
         </div>
       </div>
@@ -49,7 +56,7 @@ export function Navbar() {
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm animate-[fade_.2s_ease-out]" onClick={() => setOpen(false)} />
           <div className="absolute inset-y-0 left-0 flex w-[86%] max-w-sm flex-col overflow-y-auto bg-bg p-4 shadow-2xl animate-[slide_.25s_ease-out]">
             <div className="mb-4 flex items-center justify-between">
-              <Image src="/images/logos/upgrad-sot.webp" alt="upGrad School of Technology" width={467} height={144} unoptimized className="h-8 w-auto" />
+              <Image src="/images/logos/upgrad-catalyst.png" alt="upGrad School of Technology | Catalyst" width={187} height={34} unoptimized className="h-[30px] w-auto" />
               <button aria-label="Close menu" onClick={() => setOpen(false)} autoFocus
                 className="grid size-10 place-items-center rounded-lg transition hover:bg-white"><X className="size-6" /></button>
             </div>

@@ -4,7 +4,7 @@ export const avatar = (n: number) => `https://i.pravatar.cc/120?img=${n}`;
 export const liveSession = {
   title: "Skills that will matter in the",
   titleAccent: "next decade",
-  speaker: "Vishwa Mohan",
+  speaker: "Aarav Malhotra",
   role: "Ex-CTO, Unacademy",
   avatar: avatar(33),
   date: "Tue, 6 Oct 2026",
@@ -24,7 +24,7 @@ export const usps = [
 
 // Company logos shown under each speaker. Files live in public/images/logos/.
 export const logo = (name: string) => `/images/logos/${name}.svg`;
-const companyLogos = ["/images/logos/upgrad-sot.webp", ...["linkedin", "walmart", "paypal", "oracle"].map(logo)];
+const companyLogos = ["/images/logos/upgrad-sot.png", ...["linkedin", "walmart", "paypal", "oracle"].map(logo)];
 
 export const upcoming = [
   { title: "How ChatGPT Was Built", speaker: "Priya Nair", role: "SDE III, Google", avatar: avatar(8), day: "Thu", date: "8", month: "OCT", time: "6:00 PM", tag: "System Design", image: thumb("how-chatgpt-was-built"), logos: companyLogos },
