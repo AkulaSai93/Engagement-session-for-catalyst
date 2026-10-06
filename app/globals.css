@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #f6f6f8;
+  --color-ink: #0e0e14;
+  --color-muted: #5b5b6b;
+  --color-dim: #8a8a99;
+  --color-line: rgb(15 15 30 / 0.08);
+  --color-brand: #e11d48;
+  --color-brand-2: #ff3b5c;
+  --color-gold: #b7791f;
+  --color-cream: #fff8ea;
+  --font-sans: var(--font-bricolage), system-ui, sans-serif;
+  --animate-blink: blink 1.4s infinite;
+  @keyframes blink { 50% { opacity: 0.25; } }
+}
+
+body { @apply bg-bg text-ink antialiased; }
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+@keyframes fade { from { opacity: 0; } }
+@keyframes pop { from { opacity: 0; transform: scale(.96) translateY(8px); } }
+
+/* Car on the roadmap road: slight engine rumble while driving */
+.car.driving { animation: rumble .12s linear infinite alternate; }
+@keyframes rumble { to { transform: translateY(.6px); } }
