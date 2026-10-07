@@ -13,24 +13,27 @@ export function PastRecordings() {
   const [open, setOpen] = useState<Recording | null>(null);
   return (
     <section className="pt-8">
-      <SectionHeader eyebrow="Recordings" lead="Missed one? Catch up:" title="Past Recordings" action={<AllRecordings onPlay={setOpen} />} />
+      <SectionHeader title="Past Recordings" sub="Missed one? Catch up:" subClass="text-brand" action={<AllRecordings onPlay={setOpen} />} />
       <div className="grid gap-4 lg:grid-cols-[1fr_1.2fr]">
         <div className="flex flex-col gap-3">
           {recordings.slice(0, 3).map((r) => (
             <button type="button" key={r.title} onClick={() => setOpen(r)} className="flex flex-1 items-center text-left gap-3.5 rounded-xl border border-line bg-white p-2.5 transition hover:shadow-[0_8px_24px_rgba(15,15,30,.06)]">
-              <div className="relative aspect-video w-[112px] shrink-0 overflow-hidden rounded-lg">
+              <div className="relative aspect-video w-24 shrink-0 overflow-hidden rounded-lg sm:w-[112px]">
                 <Image src={r.image} alt="" fill className="object-cover" sizes="112px" />
               </div>
-              <div>
-                <b className="block text-[11px] font-semibold">{r.title}</b>
-                <div className="mt-2 flex items-center gap-2.5">
-                  <Image src={r.avatar} alt={r.speaker} width={36} height={36} className="size-9 shrink-0 rounded-full ring-2 ring-white shadow-[0_0_0_1px_var(--color-line)]" />
-                  <div className="min-w-0">
-                    <p className="text-[13px] font-semibold leading-tight">{r.speaker}</p>
-                    <p className="text-[11px] text-dim">{r.date}</p>
-                    <CompanyLogos logos={r.logos} className="mt-1" />
-                  </div>
-                </div>
+              {/* Title + date (left) */}
+              <div className="min-w-0 flex-1">
+                <b className="line-clamp-2 text-[13px] font-semibold leading-snug">{r.title}</b>
+                <p className="mt-1 flex items-center gap-1.5 text-[11px] text-dim">{r.date} · {r.duration}</p>
+                <p className="mt-1.5 flex items-center gap-1.5 text-[11px] font-medium sm:hidden">
+                  <Image src={r.avatar} alt="" width={18} height={18} className="size-[18px] rounded-full object-cover" /> {r.speaker}
+                </p>
+              </div>
+              {/* Mentor (right) */}
+              <div className="hidden w-[96px] shrink-0 flex-col items-center sm:flex gap-0.5 border-l border-line pl-3 text-center">
+                <Image src={r.avatar} alt={r.speaker} width={28} height={28} className="size-7 rounded-full object-cover ring-2 ring-white shadow-[0_0_0_1px_var(--color-line)]" />
+                <p className="w-full truncate text-[11px] font-semibold leading-tight">{r.speaker}</p>
+                <CompanyLogos logos={r.logos} className="origin-top scale-90 justify-center gap-x-1.5 [&_img]:max-w-[34px]" />
               </div>
             </button>
           ))}

@@ -6,6 +6,7 @@ import { CalendarDays, Check, ChevronDown, Clock } from "lucide-react";
 import { allRecordings, type Recording } from "@/lib/data";
 import { CompanyLogos } from "./CompanyLogos";
 import { Modal } from "./Modal";
+import { Assignments, Resources, SessionInfoCard } from "./SessionExtras";
 
 // Used until a recording has its own `videoUrl` (short CC0 clip from MDN).
 const PLACEHOLDER_VIDEO = "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4";
@@ -27,8 +28,11 @@ export function RecordingModal({ recording, onClose }: { recording: Recording; o
   }, [r]);
 
   return (
-    <Modal label={r.title} onClose={onClose} className="max-w-[1240px] bg-white">
-      <div ref={top} className="grid gap-6 p-4 sm:p-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+    <Modal label={r.title} onClose={onClose} className="max-w-[1240px] bg-white" closeClassName="!top-2.5 bg-bg text-ink hover:bg-line">
+      <div ref={top} className="flex h-14 items-center border-b border-line px-4 pr-16 sm:px-6">
+        <p className="text-[11px] font-semibold uppercase tracking-[1.5px] text-brand">● Recorded session</p>
+      </div>
+      <div className="grid gap-6 p-4 sm:p-6 lg:grid-cols-[minmax(0,1fr)_320px]">
         {/* Player + details */}
         <div className="min-w-0">
           <div className="relative aspect-video overflow-hidden rounded-xl bg-black">
@@ -41,8 +45,7 @@ export function RecordingModal({ recording, onClose }: { recording: Recording; o
             )}
           </div>
 
-          <p className="mt-4 text-[11px] font-semibold uppercase tracking-[1.5px] text-brand">● Recorded session</p>
-          <h3 className="mt-1 text-[20px] font-semibold leading-snug tracking-tight">{r.title}</h3>
+          <h3 className="mt-4 text-[20px] font-semibold leading-snug tracking-tight">{r.title}</h3>
 
           <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-3">
             <div className="flex min-w-0 flex-1 items-center gap-3">
@@ -80,11 +83,15 @@ export function RecordingModal({ recording, onClose }: { recording: Recording; o
               {more ? "Show less" : "…more"} <ChevronDown className={`size-4 transition ${more ? "rotate-180" : ""}`} />
             </button>
           </div>
+
+          <Assignments key={`a-${r.title}-${r.date}`} items={r.assignments ?? []} />
+          <Resources items={r.resources ?? []} />
         </div>
 
-        {/* Up next */}
+        {/* Session details + Up next */}
         <aside className="min-w-0">
-          <p className="mb-3 text-[14px] font-semibold">Up next</p>
+          <SessionInfoCard r={r} />
+          <p className="mb-3 mt-5 text-[14px] font-semibold">Up next</p>
           <div className="flex flex-col gap-2.5">
             {upNext.map((x, i) => (
               <button key={i} type="button" onClick={() => setR(x)}

@@ -1,13 +1,12 @@
-// Three-tier heading: label, a light lead-in line, then the bold statement.
+// Section heading: bold title with a short line underneath. Colours vary per section (per design).
 export function SectionHeader({
-  eyebrow, lead, title, action,
-}: { eyebrow: string; lead: string; title: string; action?: React.ReactNode }) {
+  title, sub, titleClass = "text-ink", subClass = "text-muted", action,
+}: { title: string; sub: string; titleClass?: string; subClass?: string; action?: React.ReactNode }) {
   return (
     <div className="mb-5 flex items-end justify-between gap-4">
       <div>
-        <p className="text-[14px] font-bold text-brand">{eyebrow}</p>
-        <p className="mt-3 text-[20px] font-light leading-tight text-muted">{lead}</p>
-        <h2 className="mt-0.5 text-[30px] font-bold leading-tight tracking-tight">{title}</h2>
+        <h2 className={`text-[24px] font-bold leading-tight sm:text-[30px] tracking-tight ${titleClass}`}>{title}</h2>
+        <p className={`mt-1 text-[15px] leading-tight sm:text-[18px] ${subClass}`}>{sub}</p>
       </div>
       {action}
     </div>

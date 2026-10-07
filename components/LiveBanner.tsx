@@ -7,7 +7,7 @@ export function LiveBanner() {
     <div className="relative -mx-4 -mt-10 overflow-hidden bg-[#07070c] text-white sm:mx-0 sm:mt-0 sm:rounded-2xl">
       <div className="absolute inset-y-0 right-0 w-full sm:w-[60%]">
         <Image src={s.image} alt="" fill priority className="object-cover object-center" sizes="(max-width:640px) 100vw, 60vw" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#07070c] via-[#07070c]/40 to-transparent" />
+        <div className="absolute inset-0 bg-[#07070c]/70 sm:bg-transparent sm:bg-gradient-to-r sm:from-[#07070c] sm:via-[#07070c]/40 sm:to-transparent" />
       </div>
       <div className="absolute inset-0 bg-[radial-gradient(50%_90%_at_0%_100%,rgba(225,29,72,.35),transparent_70%)]" />
 
@@ -29,7 +29,7 @@ export function LiveBanner() {
           {s.title} <span className="text-brand-2">{s.titleAccent}</span>
         </h1>
         <div className="mt-1 flex flex-wrap gap-3 text-[10px] text-zinc-300">
-          <span className="flex items-center gap-1"><Calendar className="size-3" />{s.date}</span><span className="flex items-center gap-1"><Clock className="size-3" />{s.time}</span><span className="flex items-center gap-1"><CircleDot className="size-3" />Started {s.startedAgo}</span>
+          <span className="flex items-center gap-1"><Calendar className="size-3" />{s.date}</span><span className="flex items-center gap-1"><Clock className="size-3" />{s.time}</span><span className="hidden items-center gap-1 sm:flex"><CircleDot className="size-3" />Started {s.startedAgo}</span>
         </div>
         <div className="mt-2.5 flex gap-2 sm:mt-3">
           <a href={s.href} className="flex items-center gap-1.5 rounded-xl bg-brand px-3.5 py-2 text-[11px] font-semibold shadow-[0_6px_20px_rgba(225,29,72,.45)] transition hover:bg-brand-2">

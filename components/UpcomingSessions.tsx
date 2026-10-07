@@ -56,9 +56,9 @@ export function UpcomingSessions() {
 
   return (
     <section className="pt-7">
-      <SectionHeader eyebrow="Live Sessions" lead="This week:" title="Upcoming Sessions"
+      <SectionHeader title="Upcoming Sessions" sub="This week:" titleClass="text-brand"
         action={
-          <div className="flex gap-3">
+          <div className="hidden gap-3 sm:flex">
             <button aria-label="Previous" onClick={() => scroll(-1)} className={arrow}><ChevronLeft className="size-5" /></button>
             <button aria-label="Next" onClick={() => scroll(1)} className={arrow}><ChevronRight className="size-5" /></button>
           </div>

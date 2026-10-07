@@ -2,22 +2,22 @@ export const thumb = (name: string) => `/images/sessions/${name}.jpg`;
 export const avatar = (n: number) => `https://i.pravatar.cc/120?img=${n}`;
 
 export const liveSession = {
-  title: "Where Tech Is Heading: Skills That Will Matter in the",
-  titleAccent: "Next Decade",
-  speaker: "Vishwa Mohan",
-  role: "Founder & CEO, upGrad SOT",
-  avatar: "/images/mentors/vishwa-mohan.jpg",
+  title: "LinkedIn",
+  titleAccent: "Orientation",
+  speaker: "Bose Sir",
+  role: "Career Mentor",
+  avatar: "/images/mentors/bose.jpg",
   date: "Tue, 6 Oct 2026",
   time: "3:30 – 5:30 PM",
   startedAgo: "42 min ago",
   progress: 38,
-  image: thumb("where-tech-is-heading"),
+  image: thumb("linkedin-orientation"),
   href: "#",
 };
 
 export const usps = [
-  { icon: "🎫", image: "/images/paid-internship.png", imgW: 213, imgH: 197, imgClass: "right-3 top-2 w-[128px]", stat: "Top 20%", title: "Guaranteed paid internships", body: "Perform in the top fifth of your cohort and a paid internship is locked in.", tint: "bg-[#FFF7EC]" },
-  { icon: "👑", image: "/images/internshala-pro.png", imgW: 266, imgH: 178, imgClass: "right-4 top-1/2 w-[140px] -translate-y-1/2", stat: "6 Months", title: "Internshala Pro", body: "After completing the 2-year program", tint: "bg-[#F1F6FF]" },
+  { icon: "🎫", image: "/images/paid-internship.png", imgW: 213, imgH: 197, imgClass: "right-3 top-2 w-[104px] sm:w-[128px]", stat: "Top 20%", title: "Guaranteed Paid Internship", body: "The top 20% top performers get a guaranteed paid internship.", tint: "bg-[#FFF7EC]" },
+  { icon: "👑", image: "/images/internshala-pro.png", imgW: 266, imgH: 178, imgClass: "right-3 top-1/2 w-[112px] -translate-y-1/2 sm:right-4 sm:w-[140px]", stat: "6 Months", title: "Internshala Pro FREE", body: "Get a 6-month free subscription after completing the 2-year program.", tint: "bg-[#F1F6FF]" },
   { icon: "🏆", stat: "₹25L", title: "Hackathon every semester", body: "End-of-semester hackathons with real prize money and industry judges.", tint: "bg-amber-50 text-gold" },
   { icon: "🎯", stat: "₹1 Cr", title: "Total prize pool", body: "Across all 4 semesters — the largest student prize pool in the country.", tint: "bg-emerald-50 text-emerald-600" },
 ];
@@ -62,7 +62,7 @@ const S = (s: Omit<Session, "logos">): Session => ({
 
 export const sessions: Session[] = [
   S({ id: "linkedin", title: "LinkedIn Orientation", speaker: "Bose Sir", role: "Career Mentor", avatar: avatar(52),
-    image: thumb("build-a-startup-2"), connects: "Career & Personal Branding",
+    image: thumb("linkedin-orientation"), connects: "Career & Personal Branding",
     description: "Profile setup, headline crafting, connection strategy and personal branding.",
     learn: ["Create or update your LinkedIn profile", "Write a headline that stands out", "Build a connection strategy", "Connect with 5 classmates"] }),
   S({ id: "whatsapp", title: "How WhatsApp Was Built", speaker: "MAANG Engineer", role: "MAANG Mentor", avatar: avatar(8),
@@ -109,7 +109,7 @@ export const sessions: Session[] = [
 const byId = (id: string) => sessions.find((x) => x.id === id)!;
 
 // Placeholder schedule (replace with real dates). The PDF order is treated as chronological:
-// WhatsApp + LinkedIn + the last two PDF sessions are shown as past (for now), "Where Tech" is live, the rest upcoming.
+// LinkedIn Orientation is live now; WhatsApp, Where Tech + the last two PDF sessions are past; the rest upcoming.
 const SLOTS = [["Thu", "8", "OCT", "6:00 PM"], ["Fri", "9", "OCT", "5:00 PM"], ["Sat", "10", "OCT", "11:00 AM"], ["Mon", "12", "OCT", "7:00 PM"],
   ["Wed", "14", "OCT", "6:30 PM"], ["Fri", "16", "OCT", "5:00 PM"], ["Mon", "19", "OCT", "6:00 PM"], ["Wed", "21", "OCT", "6:30 PM"]];
 
@@ -121,11 +121,29 @@ export const upcoming = ["chatgpt", "data-decides", "big-tech", "google-search",
   });
 
 // A past session. Set `videoUrl` (an .mp4/HLS link, or a YouTube/Vimeo embed URL) to make it playable.
-export type Recording = Session & { date: string; duration: string; videoUrl?: string };
-const past = (id: string, date: string, duration: string, videoUrl?: string): Recording => ({ ...byId(id), date, duration, videoUrl });
+export type Assignment = { title: string; maxMarks: number; task: string };
+export type Resource = { name: string; type: string; size?: string; url: string };
+export type Recording = Session & {
+  date: string; duration: string; videoUrl?: string; time?: string;
+  assignments?: Assignment[]; resources?: Resource[];
+};
+// SAMPLE: resources per session (replace with the real slide/notes links).
+const RESOURCES: Record<string, Resource[]> = {
+  "where-tech": [
+    { name: "Where Tech Is Heading – Slides", type: "PDF", size: "394 KB", url: "#" },
+    { name: "AI-era career roadmap", type: "PDF", size: "1.2 MB", url: "#" },
+  ],
+};
+// Assignments per session (from the PDF's "Assignment" column).
+const ASSIGNMENTS: Record<string, Assignment[]> = {
+  "where-tech": [{ title: "Assignment 1", maxMarks: 10, task: "Pick one tech role that is growing (e.g. AI engineer, cloud engineer). In 200 words, explain why it is growing and list 3 skills you will start building this semester." }],
+  linkedin: [{ title: "Assignment 1", maxMarks: 10, task: "Create or update your LinkedIn profile, then connect with 5 classmates. Share your profile link." }],
+};
+const past = (id: string, date: string, duration: string, videoUrl?: string): Recording =>
+  ({ ...byId(id), date, duration, videoUrl, assignments: ASSIGNMENTS[id] ?? [], resources: RESOURCES[id] ?? [] });
 export const featuredRecording = past("whatsapp", "2 Oct 2026", "58 min");
 export const recordings = [
-  past("linkedin", "29 Sep 2026", "45 min"),
+  past("where-tech", "29 Sep 2026", "1 hr 05 min"),
   past("look-behind", "25 Sep 2026", "52 min"),
   past("google-maps", "22 Sep 2026", "61 min"),
 ];
