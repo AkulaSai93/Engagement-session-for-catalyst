@@ -9,7 +9,7 @@ import { Modal } from "./Modal";
 
 const PAGE = 10; // two rows of five
 
-export function AllRecordings() {
+export function AllRecordings({ onPlay }: { onPlay: (r: (typeof all)[number]) => void }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [shown, setShown] = useState(PAGE);
@@ -45,8 +45,8 @@ export function AllRecordings() {
           </div>
           <div className="px-6 pb-6 sm:px-8">
             <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-              {visible.map((r) => (
-                <a key={r.title} href="#" className="group overflow-hidden rounded-xl border border-line bg-white transition hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(15,15,30,.08)]">
+              {visible.map((r, i) => (
+                <button type="button" key={i} onClick={() => onPlay(r)} className="group overflow-hidden text-left rounded-xl border border-line bg-white transition hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(15,15,30,.08)]">
                   <div className="relative aspect-video">
                     <Image src={r.image} alt="" fill className="object-cover" sizes="(max-width:768px) 50vw, 250px" />
                     <span className="absolute left-1/2 top-1/2 grid size-9 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-black/40 text-brand-2 backdrop-blur-md transition group-hover:scale-110">
@@ -65,7 +65,7 @@ export function AllRecordings() {
                     </div>
                     <CompanyLogos logos={r.logos} nowrap className="mt-3 justify-between gap-x-1.5 rounded-lg bg-bg px-2 py-1.5 [&_img]:max-w-[32px]" />
                   </div>
-                </a>
+                </button>
               ))}
             </div>
 

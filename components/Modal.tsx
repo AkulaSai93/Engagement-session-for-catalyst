@@ -3,18 +3,24 @@
 import { useEffect } from "react";
 import { X } from "lucide-react";
 
+const stack: symbol[] = [];
+
 // Shared popup shell: dark backdrop, Esc / backdrop click to close, page scroll locked while open.
 export function Modal({
   label, onClose, className = "max-w-[760px]", closeClassName = "bg-black/50 text-white hover:bg-black/70", children,
 }: { label: string; onClose: () => void; className?: string; closeClassName?: string; children: React.ReactNode }) {
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    // Only the top-most open popup reacts to Esc (e.g. a player opened over "View all").
+    const id = Symbol();
+    stack.push(id);
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && stack[stack.length - 1] === id && onClose();
     document.addEventListener("keydown", onKey);
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prev;
+      stack.splice(stack.indexOf(id), 1);
     };
   }, [onClose]);
 

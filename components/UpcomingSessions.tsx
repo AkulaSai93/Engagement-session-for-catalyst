@@ -89,7 +89,7 @@ export function UpcomingSessions() {
               </div>
               <div className="mt-2 rounded-lg bg-bg px-2 py-1.5">
                 <p className="mb-1 text-[8px] font-semibold uppercase tracking-[1px] text-dim">Mentors from</p>
-                <CompanyLogos logos={u.logos} nowrap className="justify-between gap-x-1.5 [&_img]:max-w-[44px]" />
+                <CompanyLogos logos={u.logos} nowrap className="gap-x-3 [&_img]:max-w-[56px]" />
               </div>
             </div>
           </article>

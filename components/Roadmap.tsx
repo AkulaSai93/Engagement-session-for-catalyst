@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
-  Cloud, Code2, Globe, Sparkles,
+  BrainCircuit, CloudCog, Layers, SquareTerminal,
 } from "lucide-react";
 import { roadmap } from "@/lib/data";
 import { SectionHeader } from "./SectionHeader";
@@ -19,7 +19,8 @@ const TILE_COLORS: [string, string, string][] = [
   ["#FFFFFF", "#ECEEF1", "#0A0A0B"], // white
 ];
 // One icon per stage, in order (cycles if there are more stages).
-const STAGE_ICONS = [Code2, Globe, Cloud, Sparkles];
+// Matched to the semesters: foundations (terminal), full stack (layers), cloud engineering, AI + career.
+const STAGE_ICONS = [SquareTerminal, Layers, CloudCog, BrainCircuit];
 const PER_LOOP = 4; // stages per repeat of the road shape
 const LOOPS = Math.ceil(N / PER_LOOP);
 const LOOP_H = 640; // px height of one repeat
@@ -223,7 +224,7 @@ export function Roadmap() {
                     <span className="grid size-7 place-items-center rounded-full" style={{ background: tint, color: accent }}>
                       <Icon className="size-[14px]" />
                     </span>
-                    <span className="line-clamp-2 text-center text-[10px] font-semibold leading-tight">{s.title}</span>
+                    <span className="line-clamp-3 text-center text-[10px] font-semibold leading-tight">{s.title}</span>
                   </span>
                 </button>
               ) : (
