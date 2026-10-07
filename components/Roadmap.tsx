@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
-  Cloud, Code2, Globe, Sparkles, Trophy,
+  Cloud, Code2, Globe, Sparkles,
 } from "lucide-react";
 import { roadmap } from "@/lib/data";
 import { SectionHeader } from "./SectionHeader";
@@ -282,14 +282,11 @@ export function Roadmap() {
                   </p>
                   <div className="mt-3 border-l-2 pl-4" style={{ borderColor: lit ? tint : "var(--color-line)" }}>
                     <p className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[10px] font-bold uppercase tracking-[1.2px]" style={{ color: lit ? accent : undefined }}>
-                      <Icon className="size-3.5" /> Sem {s.sem} · {s.period}
+                      <Icon className="size-3.5" /> Semester {s.sem}
                       {now && <span className="whitespace-nowrap text-brand">● You are here</span>}
                     </p>
                     <h4 className="mt-1 text-[17px] font-bold leading-snug">{s.title}</h4>
                     <p className="mt-1 text-[13px] leading-relaxed text-muted">{s.body}</p>
-                    {s.hackathon && (
-                      <p className="mt-1.5 flex items-center gap-1 text-[12px] font-semibold text-gold"><Trophy className="size-3.5" /> {s.hackathon}</p>
-                    )}
                   </div>
                 </li>
               );
