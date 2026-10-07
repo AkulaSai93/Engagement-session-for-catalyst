@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
-  Brain, Briefcase, Code2, Cpu, Database, FolderGit2, GitBranch, Globe, Network, Rocket, Server, Sparkles, Trophy, Users, Wrench,
+  Brain, Briefcase, Code2, Database, Globe, Server, Sparkles, Trophy, Users,
 } from "lucide-react";
 import { roadmap } from "@/lib/data";
 import { SectionHeader } from "./SectionHeader";
@@ -19,8 +19,8 @@ const TILE_COLORS: [string, string, string][] = [
   ["#FFFFFF", "#ECEEF1", "#0A0A0B"], // white
 ];
 // One icon per stage, in order (cycles if there are more stages).
-const STAGE_ICONS = [Rocket, Code2, Brain, Wrench, Cpu, Globe, GitBranch, Users, Network, Database, Server, FolderGit2, Sparkles, Briefcase, Trophy];
-const PER_LOOP = 5; // stages per repeat of the road shape
+const STAGE_ICONS = [Code2, Brain, Globe, Users, Database, Server, Sparkles, Briefcase];
+const PER_LOOP = 4; // stages per repeat of the road shape
 const LOOPS = Math.ceil(N / PER_LOOP);
 const LOOP_H = 640; // px height of one repeat
 const CAP = 24;

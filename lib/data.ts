@@ -49,26 +49,19 @@ export const recordings = [
 ];
 
 export type StageStatus = "done" | "current" | "upcoming";
-// SAMPLE DATA: 15 journey stages across 4 semesters. Replace with the real curriculum.
+// SAMPLE DATA: 8 journey stages, two per semester. Replace with the real curriculum.
 // The last stage of a semester carries that semester's hackathon.
 export const roadmap: {
   sem: number; period: string; title: string; body: string; hackathon?: string; status: StageStatus;
 }[] = [
-  { sem: 1, period: "Month 1", title: "Pre-Catalyst", body: "Spark curiosity, meet your cohort and set your goals.", status: "done" },
-  { sem: 1, period: "Month 2–3", title: "Programming Basics", body: "Variables, loops and functions — your first real programs.", status: "done" },
-  { sem: 1, period: "Month 4–5", title: "Problem Solving", body: "Break problems down and solve 100+ practice questions.", status: "done" },
-  { sem: 1, period: "Month 6", title: "Mini Project", body: "Ship your first small app end to end.", hackathon: "₹25L Hackathon", status: "done" },
-  { sem: 2, period: "Month 7–8", title: "CS Fundamentals", body: "How computers, networks and the web actually work.", status: "done" },
-  { sem: 2, period: "Month 9–10", title: "Web Development", body: "Build full-stack apps with modern frameworks.", status: "current" },
-  { sem: 2, period: "Month 11", title: "Git & Teamwork", body: "Version control, code reviews and working in a team.", status: "upcoming" },
-  { sem: 2, period: "Month 12", title: "Team Project", body: "Build a product with your squad.", hackathon: "₹25L Hackathon · Dec 2026", status: "upcoming" },
-  { sem: 3, period: "Month 13–14", title: "Data Structures", body: "Arrays to graphs — the toolkit behind every interview.", status: "upcoming" },
-  { sem: 3, period: "Month 15–16", title: "Databases", body: "Model data, write SQL and design schemas that scale.", status: "upcoming" },
-  { sem: 3, period: "Month 17", title: "System Design", body: "Architect services that survive real traffic.", status: "upcoming" },
-  { sem: 3, period: "Month 18", title: "Open Source", body: "Contribute to real projects and GSoC-style programs.", hackathon: "₹25L Hackathon", status: "upcoming" },
-  { sem: 4, period: "Month 19–20", title: "AI & Applied ML", body: "Build products on top of modern AI models.", status: "upcoming" },
-  { sem: 4, period: "Month 21–22", title: "Capstone Project", body: "One production-grade project for your portfolio.", status: "upcoming" },
-  { sem: 4, period: "Month 23–24", title: "Industry Launch", body: "Interview prep, paid internships for the top 20%, then graduate.", hackathon: "₹25L Grand Hackathon", status: "upcoming" },
+  { sem: 1, period: "Month 1–3", title: "Programming Basics", body: "Spark curiosity, meet your cohort and write your first real programs.", status: "done" },
+  { sem: 1, period: "Month 4–6", title: "Problem Solving", body: "Break problems down, solve 100+ questions and ship a mini project.", hackathon: "₹25L Hackathon", status: "done" },
+  { sem: 2, period: "Month 7–9", title: "Web Development", body: "How the web works, then build full-stack apps with modern frameworks.", status: "current" },
+  { sem: 2, period: "Month 10–12", title: "Team Project", body: "Git, code reviews and shipping a product with your squad.", hackathon: "₹25L Hackathon · Dec 2026", status: "upcoming" },
+  { sem: 3, period: "Month 13–15", title: "Data Structures & Databases", body: "The toolkit behind every interview, plus SQL and schema design.", status: "upcoming" },
+  { sem: 3, period: "Month 16–18", title: "System Design & Open Source", body: "Architect services that scale and contribute to real codebases.", hackathon: "₹25L Hackathon", status: "upcoming" },
+  { sem: 4, period: "Month 19–21", title: "AI & Capstone", body: "Build on modern AI models and ship one production-grade project.", status: "upcoming" },
+  { sem: 4, period: "Month 22–24", title: "Industry Launch", body: "Interview prep, paid internships for the top 20%, then graduate.", hackathon: "₹25L Grand Hackathon", status: "upcoming" },
 ];
 
 // SAMPLE DATA: 30 recordings to preview the "View all" popup at scale.
