@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { ProfileSidebar } from "./ProfileSidebar";
 
-const links = ["Home", "Curriculum", "Student Journey", "BuildSpace", "FAQs"];
+const links = ["Home", "Curriculum", "Student Journey", "ProjectBuilder Pro", "FAQs"];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
