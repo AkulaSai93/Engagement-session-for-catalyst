@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
-  Brain, Briefcase, Code2, Database, Globe, Server, Sparkles, Trophy, Users,
+  Cloud, Code2, Globe, Sparkles, Trophy,
 } from "lucide-react";
 import { roadmap } from "@/lib/data";
 import { SectionHeader } from "./SectionHeader";
@@ -19,7 +19,7 @@ const TILE_COLORS: [string, string, string][] = [
   ["#FFFFFF", "#ECEEF1", "#0A0A0B"], // white
 ];
 // One icon per stage, in order (cycles if there are more stages).
-const STAGE_ICONS = [Code2, Brain, Globe, Users, Database, Server, Sparkles, Briefcase];
+const STAGE_ICONS = [Code2, Globe, Cloud, Sparkles];
 const PER_LOOP = 4; // stages per repeat of the road shape
 const LOOPS = Math.ceil(N / PER_LOOP);
 const LOOP_H = 640; // px height of one repeat
@@ -144,7 +144,7 @@ export function Roadmap() {
 
   return (
     <section className="pt-10">
-      <SectionHeader eyebrow="Roadmap" lead="Your 2-year journey:" title={`${N} Stages, One Clear Path`} />
+      <SectionHeader eyebrow="Roadmap" lead="Your 2-year journey:" title={`${N} Semesters, One Clear Path`} />
 
       {/* Map-like backdrop: soft colour glows over a faint dot grid */}
       <div className="relative mt-8 overflow-hidden rounded-[28px] border border-line bg-white px-5 pb-8 pt-8 sm:px-10 sm:pb-24 sm:pt-14">
@@ -184,7 +184,7 @@ export function Roadmap() {
             <span className={`absolute left-0 top-[52px] -translate-x-1/2 whitespace-nowrap text-center text-[11px] font-bold uppercase tracking-[1.5px] transition-colors ${progress >= 0.999 ? "text-brand" : "text-dim"}`}>
               Finish line
               <span className="block text-[11px] font-medium normal-case tracking-normal text-muted">
-                {progress >= 0.999 ? "Two years done. Industry-ready." : `${N} stages · 24 months`}
+                {progress >= 0.999 ? "Two years done. Industry-ready." : `${N} semesters · 24 months`}
               </span>
             </span>
           </div>
@@ -200,13 +200,11 @@ export function Roadmap() {
         {wide && stops.map((p, i) => {
           const s = roadmap[i], lit = reached(i), now = s.status === "current", Icon = STAGE_ICONS[i % STAGE_ICONS.length];
           const [bg, tint, accent] = TILE_COLORS[i % TILE_COLORS.length];
+          // Hover popup: title + description only
           const details = (
             <>
-              <p className="text-[10px] font-semibold uppercase tracking-[1.2px] text-dim">
-                {now && <span className="mr-1 text-brand">● You are here ·</span>}Sem {s.sem} · {s.period}
-              </p>
-              <p className="text-[12px] leading-snug text-muted">{s.body}</p>
-              {s.hackathon && <p className="mt-0.5 flex items-center gap-1 text-[11px] font-semibold text-gold"><Trophy className="size-3" /> {s.hackathon}</p>}
+              <p className="text-[12px] font-semibold leading-snug">{s.title}</p>
+              <p className="mt-1 text-[12px] leading-snug text-muted">{s.body}</p>
             </>
           );
           return (
@@ -215,17 +213,17 @@ export function Roadmap() {
               {wide ? (
                 // Tile sitting on the road: glassy outer frame, solid inner card with an icon
                 <button type="button" onFocus={() => setHover(i)} onBlur={() => setHover(null)}
-                  className={`-translate-x-1/2 -translate-y-1/2 rounded-[22px] border border-white/80 bg-white/55 p-1.5 backdrop-blur-md transition-all duration-500 ${
+                  className={`-translate-x-1/2 -translate-y-1/2 rounded-[18px] border border-white/80 bg-white/55 p-1 backdrop-blur-md transition-all duration-500 ${
                     lit ? "scale-100 opacity-100" : "scale-95 opacity-70 saturate-50"
                   } ${now ? "ring-2 ring-brand ring-offset-2 ring-offset-bg" : ""}`}
                   style={{ boxShadow: lit ? `0 10px 28px ${accent}33, 0 0 0 1px ${accent}22` : "0 6px 20px rgba(15,15,30,.08)" }}>
-                  <span className="relative flex size-[92px] flex-col items-center justify-center gap-1.5 overflow-hidden rounded-2xl px-2 text-ink"
+                  <span className="relative flex h-[84px] w-[120px] flex-col items-center justify-center gap-1 overflow-hidden rounded-2xl px-2 text-ink"
                     style={{ background: bg, border: bg === "#FFFFFF" ? "1px solid var(--color-line)" : undefined }}>
                     <span className="absolute left-2 top-1.5 text-[9px] font-bold" style={{ color: accent }}>{String(i + 1).padStart(2, "0")}</span>
-                    <span className="grid size-9 place-items-center rounded-full" style={{ background: tint, color: accent }}>
-                      <Icon className="size-[18px]" />
+                    <span className="grid size-7 place-items-center rounded-full" style={{ background: tint, color: accent }}>
+                      <Icon className="size-[14px]" />
                     </span>
-                    <span className="line-clamp-2 text-center text-[11px] font-semibold leading-tight">{s.title}</span>
+                    <span className="line-clamp-2 text-center text-[10px] font-semibold leading-tight">{s.title}</span>
                   </span>
                 </button>
               ) : (
@@ -237,7 +235,7 @@ export function Roadmap() {
               )}
               {wide ? (
                 hover === i && (
-                  <div className="absolute left-0 top-14 z-20 w-60 -translate-x-1/2 rounded-xl border border-line bg-white p-3 shadow-[0_12px_30px_rgba(15,15,30,.12)] animate-[pop_.15s_ease-out]">
+                  <div className="absolute left-0 top-12 z-20 w-64 -translate-x-1/2 rounded-xl border border-line bg-white p-3 shadow-[0_12px_30px_rgba(15,15,30,.12)] animate-[pop_.15s_ease-out]">
                     {details}
                   </div>
                 )
@@ -299,7 +297,7 @@ export function Roadmap() {
             <li className="absolute -bottom-1 left-14 text-[11px] font-bold uppercase tracking-[1.5px]">
               <span className={progress >= 0.999 ? "text-brand" : "text-dim"}>Finish line</span>
               <span className="block text-[11px] font-medium normal-case tracking-normal text-muted">
-                {progress >= 0.999 ? "Two years done. Industry-ready." : `${N} stages · 24 months`}
+                {progress >= 0.999 ? "Two years done. Industry-ready." : `${N} semesters · 24 months`}
               </span>
             </li>
           </ol>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { usps } from "@/lib/data";
+import { ProjectBuilderCard } from "./ProjectBuilderCard";
 
 const sideUsps = usps.filter((u) => !u.stat.startsWith("₹"));
 
@@ -28,6 +29,7 @@ export function WhyCatalyst() {
           </div>
         ))}
       </div>
+      <ProjectBuilderCard />
     </section>
   );
 }

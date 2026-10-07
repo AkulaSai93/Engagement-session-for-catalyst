@@ -49,19 +49,22 @@ export const recordings = [
 ];
 
 export type StageStatus = "done" | "current" | "upcoming";
-// SAMPLE DATA: 8 journey stages, two per semester. Replace with the real curriculum.
-// The last stage of a semester carries that semester's hackathon.
+// The 4 semesters of the 2-year programme. `body` is shown on hover (desktop) / under the title (mobile).
 export const roadmap: {
   sem: number; period: string; title: string; body: string; hackathon?: string; status: StageStatus;
 }[] = [
-  { sem: 1, period: "Month 1–3", title: "Programming Basics", body: "Spark curiosity, meet your cohort and write your first real programs.", status: "done" },
-  { sem: 1, period: "Month 4–6", title: "Problem Solving", body: "Break problems down, solve 100+ questions and ship a mini project.", hackathon: "₹25L Hackathon", status: "done" },
-  { sem: 2, period: "Month 7–9", title: "Web Development", body: "How the web works, then build full-stack apps with modern frameworks.", status: "current" },
-  { sem: 2, period: "Month 10–12", title: "Team Project", body: "Git, code reviews and shipping a product with your squad.", hackathon: "₹25L Hackathon · Dec 2026", status: "upcoming" },
-  { sem: 3, period: "Month 13–15", title: "Data Structures & Databases", body: "The toolkit behind every interview, plus SQL and schema design.", status: "upcoming" },
-  { sem: 3, period: "Month 16–18", title: "System Design & Open Source", body: "Architect services that scale and contribute to real codebases.", hackathon: "₹25L Hackathon", status: "upcoming" },
-  { sem: 4, period: "Month 19–21", title: "AI & Capstone", body: "Build on modern AI models and ship one production-grade project.", status: "upcoming" },
-  { sem: 4, period: "Month 22–24", title: "Industry Launch", body: "Interview prep, paid internships for the top 20%, then graduate.", hackathon: "₹25L Grand Hackathon", status: "upcoming" },
+  { sem: 1, period: "Months 1–6", title: "Computing & Programming Foundations",
+    body: "Python, maths, Linux, Git & GitHub and web basics.",
+    hackathon: "₹25L Hackathon", status: "done" },
+  { sem: 2, period: "Months 7–12", title: "Full Stack Software Development",
+    body: "JavaScript, React, Next.js, backend and DSA.",
+    hackathon: "₹25L Hackathon · Dec 2026", status: "current" },
+  { sem: 3, period: "Months 13–18", title: "Software Engineering & Cloud",
+    body: "Databases, servers, cloud and system development.",
+    hackathon: "₹25L Hackathon", status: "upcoming" },
+  { sem: 4, period: "Months 19–24", title: "AI Engineering & Career Accelerator",
+    body: "Industry projects, capstone and a job-ready portfolio.",
+    hackathon: "₹25L Grand Hackathon", status: "upcoming" },
 ];
 
 // SAMPLE DATA: 30 recordings to preview the "View all" popup at scale.
