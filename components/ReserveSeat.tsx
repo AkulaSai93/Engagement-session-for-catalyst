@@ -63,18 +63,7 @@ export function ReserveSeat() {
           </span>
           <p className="text-[16px] font-extrabold leading-tight tracking-tight md:mt-2 md:text-[24px]">
             Your 10-Day Free Access Is{" "}
-            <span className="relative inline-block">
-              <span className="bg-gradient-to-r from-brand-2 to-rose-300 bg-clip-text text-transparent">Unlocked</span>
-              {/* Figma-style cursor with a name tag pointing at "Unlocked" */}
-              <span aria-hidden className="pointer-events-none absolute left-[85%] top-[60%] z-10 hidden animate-[cursor-drift_3.2s_ease-in-out_infinite] md:block">
-                <svg viewBox="0 0 16 20" className="size-4 drop-shadow-[0_2px_4px_rgba(0,0,0,.5)] sm:size-5">
-                  <path d="M1 1 L1 16 L5 12 L8 19 L11 17.5 L8 11 L14 11 Z" fill="#FF3B5C" stroke="#000000" strokeWidth="1.2" strokeLinejoin="round" />
-                </svg>
-                <span className="absolute right-1 top-4 whitespace-nowrap rounded-full rounded-tr-sm bg-brand sm:right-auto sm:rounded-tr-full sm:rounded-tl-sm px-2 py-0.5 text-[10px] font-bold text-white shadow-lg sm:left-4 sm:top-4 sm:text-[11px]">
-                  10 days of full access ✨
-                </span>
-              </span>
-            </span>
+            <span className="bg-gradient-to-r from-brand-2 to-rose-300 bg-clip-text text-transparent">Unlocked</span>
           </p>
           <p className="mt-1.5 hidden text-[14px] leading-snug text-white/80 md:block">
             Reserve your seat for{" "}
