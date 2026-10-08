@@ -9,7 +9,7 @@ const items = [
   { icon: Radio, title: "Engagement", sub: "Live sessions & opportunities", active: true },
 ];
 
-export function ProfileSidebar({ className = "hidden lg:block lg:sticky lg:top-[128px]" }: { className?: string }) {
+export function ProfileSidebar({ className = "hidden lg:block lg:sticky lg:top-[205px]" }: { className?: string }) {
   return (
     <aside className={`h-max rounded-[20px] border border-line bg-white p-6.5 ${className}`}>
       <h2 className="text-xl font-semibold">My Profile</h2>

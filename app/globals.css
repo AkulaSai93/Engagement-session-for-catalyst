@@ -26,3 +26,7 @@ body { @apply bg-bg text-ink antialiased; }
 .car.driving { animation: rumble .12s linear infinite alternate; }
 @keyframes rumble { to { transform: translateY(.6px); } }
 @keyframes slide { from { transform: translateX(-100%); } }
+@keyframes flip { from { transform: rotateX(-90deg); opacity: .3; } }
+@keyframes sheen { 0%, 60% { transform: translateX(0); } 100% { transform: translateX(450%); } }
+
+@keyframes cursor-drift { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(6px, 4px); } }

@@ -16,8 +16,8 @@ export const liveSession = {
 };
 
 export const usps = [
-  { icon: "🎫", image: "/images/paid-internship.png", imgW: 213, imgH: 197, imgClass: "right-3 top-2 w-[104px] sm:w-[128px]", stat: "Top 20%", title: "Guaranteed Paid Internship", body: "The top 20% top performers get a guaranteed paid internship.", tint: "bg-[#FFF7EC]" },
-  { icon: "👑", image: "/images/internshala-pro.png", imgW: 266, imgH: 178, imgClass: "right-3 top-1/2 w-[112px] -translate-y-1/2 sm:right-4 sm:w-[140px]", stat: "6 Months", title: "Internshala Pro FREE", body: "Get a 6-month free subscription after completing the 2-year program.", tint: "bg-[#F1F6FF]" },
+  { icon: "🎫", image: "/images/paid-internship.png", imgW: 213, imgH: 197, imgClass: "right-3 top-2 w-[104px] sm:w-[128px] lg:w-[96px] xl:w-[128px]", stat: "Top 20%", title: "Guaranteed Paid Internship", body: "The top 20% top performers get a guaranteed paid internship.", tint: "bg-[#FFF7EC]" },
+  { icon: "👑", image: "/images/internshala-pro.png", imgW: 266, imgH: 178, imgClass: "right-3 top-1/2 w-[112px] -translate-y-1/2 sm:right-4 sm:w-[140px] lg:w-[104px] xl:w-[140px]", stat: "6 Months", title: "Internshala Pro FREE", body: "Get a 6-month free subscription after completing the 2-year program.", tint: "bg-[#F1F6FF]" },
   { icon: "🏆", stat: "₹25L", title: "Hackathon every semester", body: "End-of-semester hackathons with real prize money and industry judges.", tint: "bg-amber-50 text-gold" },
   { icon: "🎯", stat: "₹1 Cr", title: "Total prize pool", body: "Across all 4 semesters — the largest student prize pool in the country.", tint: "bg-emerald-50 text-emerald-600" },
 ];
@@ -183,3 +183,13 @@ export const roadmap: {
     body: "Industry projects, capstone and a job-ready portfolio.",
     hackathon: "₹25L Grand Hackathon", status: "upcoming" },
 ];
+
+// ── Free-access / seat reservation ───────────────────────────────────────────
+// SAMPLE: replace with the signed-in student's real values from your backend.
+export const freeAccess = {
+  startedAt: "2026-10-06T10:00:00+05:30", // when the student signed up
+  days: 10,                               // length of free access
+  reserved: false,                        // true once the ₹499 block amount is paid → hides the offer
+  price: 499,
+  reserveHref: "#reserve",                // payment link
+};
