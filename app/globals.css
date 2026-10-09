@@ -29,3 +29,4 @@ body { @apply bg-bg text-ink antialiased; }
 @keyframes flip { from { transform: rotateX(-90deg); opacity: .3; } }
 @keyframes sheen { 0%, 60% { transform: translateX(0); } 100% { transform: translateX(450%); } }
 
+@keyframes ring-spin { to { transform: rotate(360deg); } }
