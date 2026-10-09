@@ -191,5 +191,19 @@ export const freeAccess = {
   days: 10,                               // length of free access
   reserved: false,                        // true once the ₹499 block amount is paid → hides the offer
   price: 499,
-  reserveHref: "#reserve",                // payment link
+  payHref: "#razorpay",                   // Razorpay checkout / payment link (opened from the "Pay ₹499" button)
+};
+
+// ── Welcome video ────────────────────────────────────────────────────────────
+// SAMPLE: replace `videoUrl` with the real welcome video (mp4/HLS link, or a
+// YouTube/Vimeo embed URL) and `poster` with its thumbnail.
+export const welcomeVideo = {
+  title: "Welcome to Catalyst",
+  body: "A quick tour of how your next 2 years work — sessions, projects, hackathons and internships.",
+  duration: "2 min",
+  speaker: "Vishwa Mohan",
+  role: "Founder & CEO, upGrad SOT",
+  avatar: "/images/mentors/vishwa-mohan.jpg",
+  poster: thumb("where-tech-is-heading"),
+  videoUrl: "",
 };

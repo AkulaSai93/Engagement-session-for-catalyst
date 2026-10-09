@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, LockOpen } from "lucide-react";
 import { freeAccess as fa } from "@/lib/data";
+import { ReserveCheckout } from "./ReserveCheckout";
 
 const END = new Date(fa.startedAt).getTime() + fa.days * 86_400_000;
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -47,6 +48,7 @@ function Flap({ v, label, urgent }: { v: number; label: string; urgent: boolean 
 // Full-width "event ticket" strip pinned under the top bar until the seat is reserved.
 export function ReserveSeat() {
   const t = useCountdown();
+  const [open, setOpen] = useState(false);
   if (fa.reserved) return null;
 
   return (
@@ -95,8 +97,8 @@ export function ReserveSeat() {
         </div>
 
         {/* Ticket stub CTA with perforated edge */}
-        <a href={fa.reserveHref}
-          className="group relative my-2 flex shrink-0 items-center gap-2 rounded-xl bg-brand py-2 pl-3.5 pr-3 md:my-0 md:py-0 font-semibold transition hover:bg-brand-2 md:my-0 md:-mr-[52px] md:rounded-none md:gap-4 md:pl-9 md:pr-[52px] md:after:absolute md:after:inset-y-0 md:after:left-full md:after:w-[100vw] md:after:bg-inherit md:after:content-['']">
+        <button type="button" onClick={() => setOpen(true)}
+          className="group relative my-2 flex shrink-0 text-left items-center gap-2 rounded-xl bg-brand py-2 pl-3.5 pr-3 md:my-0 md:py-0 font-semibold transition hover:bg-brand-2 md:my-0 md:-mr-[52px] md:rounded-none md:gap-4 md:pl-9 md:pr-[52px] md:after:absolute md:after:inset-y-0 md:after:left-full md:after:w-[100vw] md:after:bg-inherit md:after:content-['']">
           {/* Ticket perforation: corner notches + evenly spaced bites, all the same size */}
           <span aria-hidden className="absolute -left-2.5 -top-2.5 hidden size-5 rounded-full bg-black md:block" />
           <span aria-hidden className="absolute -bottom-2.5 -left-2.5 hidden size-5 rounded-full bg-black md:block" />
@@ -108,13 +110,14 @@ export function ReserveSeat() {
             <span className="block text-[18px] font-extrabold md:text-[32px] md:leading-none md:mt-1">₹{fa.price}</span>
           </span>
           <ArrowRight className="size-5 transition group-hover:translate-x-1 md:size-7" />
-        </a>
+        </button>
       </div>
 
       {/* Day progress along the bottom edge */}
       <div className="relative h-1 bg-white/10">
         <div className="h-full bg-gradient-to-r from-brand-2 to-brand shadow-[0_0_10px_rgba(225,29,72,.8)] transition-[width] duration-1000" style={{ width: `${t.used * 100}%` }} />
       </div>
+      {open && <ReserveCheckout t={t} onClose={() => setOpen(false)} />}
     </div>
   );
 }

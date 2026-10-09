@@ -95,7 +95,7 @@ export function Roadmap() {
     }));
   }, [d, w]);
 
-  // Fill follows the reader's eye line (60% down the screen); full at the page bottom.
+  // Fill is tied to scroll position over the track's own on-screen range, so it never jumps.
   useEffect(() => {
     let raf = 0;
     const update = () => {
@@ -103,8 +103,16 @@ export function Roadmap() {
       const el = track.current;
       if (!el) return;
       const r = el.getBoundingClientRect();
-      const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
-      target.current = atBottom ? 1 : Math.min(1, Math.max(0, (window.innerHeight * 0.65 - r.top) / (r.height + window.innerHeight * 0.15)));
+      const vh = window.innerHeight;
+      const y = window.scrollY;
+      const docTop = r.top + y;
+      const maxScroll = document.documentElement.scrollHeight - vh;
+      // The road fills as it passes the middle of the screen: 0 when its top reaches the
+      // middle (i.e. you've arrived at the section), 1 when its bottom gets there.
+      const LINE = vh * 0.55;
+      const start = docTop - LINE;
+      const end = Math.min(docTop + r.height - LINE, maxScroll - 8); // finish just before the page bottom
+      target.current = Math.min(1, Math.max(0, (y - start) / Math.max(1, end - start)));
       if (!ease) ease = requestAnimationFrame(glide);
     };
     let idle: ReturnType<typeof setTimeout>;
@@ -144,7 +152,7 @@ export function Roadmap() {
   const reached = (i: number) => !!stops[i] && progress >= stops[i].t;
 
   return (
-    <section className="pt-10">
+    <section className="pb-10 pt-10 sm:pb-40">
       <SectionHeader title={`${N} semester, one clear path`} sub="2-year Roadmap" titleClass="text-brand !text-[26px]" subClass="!text-[15px] text-muted" />
 
       {/* Map-like backdrop: soft colour glows over a faint dot grid */}
@@ -177,22 +185,22 @@ export function Roadmap() {
 
         {/* Finish line at the end of the road */}
         {wide && w > 0 && (
-          <div className={`pointer-events-none absolute z-20 ${progress >= 0.999 ? "finished" : ""}`} style={{ left: 0.4 * w, top: H - 28 }}>
+          <div className={`pointer-events-none absolute z-[5] ${progress >= 0.995 ? "finished" : ""}`} style={{ left: 0.4 * w, top: H - 28 }}>
             {/* chequered strip across the road */}
             <span className="absolute -left-[17px] top-0 h-2.5 w-[34px] rounded-[2px]"
               style={{ background: "repeating-conic-gradient(#111 0 25%, #fff 0 50%) 0 0 / 10px 10px" }} />
             {/* label below the road's end, under the car */}
-            <span className={`absolute left-0 top-[52px] -translate-x-1/2 whitespace-nowrap text-center text-[11px] font-bold uppercase tracking-[1.5px] transition-colors ${progress >= 0.999 ? "text-brand" : "text-dim"}`}>
+            <span className={`absolute left-0 top-[52px] -translate-x-1/2 whitespace-nowrap text-center text-[11px] font-bold uppercase tracking-[1.5px] transition-colors ${progress >= 0.995 ? "text-brand" : "text-dim"}`}>
               Finish line
               <span className="block text-[11px] font-medium normal-case tracking-normal text-muted">
-                {progress >= 0.999 ? "Two years done. Industry-ready." : `${N} semesters · 24 months`}
+                {progress >= 0.995 ? "Two years done. Industry-ready." : `${N} semesters · 24 months`}
               </span>
             </span>
           </div>
         )}
 
         {wide && len > 0 && (
-          <div className="pointer-events-none absolute left-0 top-0 z-30"
+          <div className="pointer-events-none absolute left-0 top-0 z-10"
             style={{ transform: `translate(${car.x - 22}px, ${car.y - 12}px) rotate(${car.angle}deg)`, transformOrigin: "22px 12px" }}>
             <Car driving={driving} />
           </div>
@@ -209,7 +217,7 @@ export function Roadmap() {
             </>
           );
           return (
-            <div key={i} className={`absolute ${hover === i ? "z-50" : "z-40"}`} style={{ left: p.x, top: p.y }}
+            <div key={i} className={`absolute ${hover === i ? "z-30" : "z-20"}`} style={{ left: p.x, top: p.y }}
               onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(null)}>
               {wide ? (
                 // Tile sitting on the road: glassy outer frame, solid inner card with an icon
@@ -236,7 +244,7 @@ export function Roadmap() {
               )}
               {wide ? (
                 hover === i && (
-                  <div className="absolute left-0 top-12 z-20 w-64 -translate-x-1/2 rounded-xl border border-line bg-white p-3 shadow-[0_12px_30px_rgba(15,15,30,.12)] animate-[pop_.15s_ease-out]">
+                  <div className="absolute left-0 top-12 z-30 w-64 -translate-x-1/2 rounded-xl border border-line bg-white p-3 shadow-[0_12px_30px_rgba(15,15,30,.12)] animate-[pop_.15s_ease-out]">
                     {details}
                   </div>
                 )
@@ -293,9 +301,9 @@ export function Roadmap() {
               );
             })}
             <li className="absolute -bottom-1 left-14 text-[11px] font-bold uppercase tracking-[1.5px]">
-              <span className={progress >= 0.999 ? "text-brand" : "text-dim"}>Finish line</span>
+              <span className={progress >= 0.995 ? "text-brand" : "text-dim"}>Finish line</span>
               <span className="block text-[11px] font-medium normal-case tracking-normal text-muted">
-                {progress >= 0.999 ? "Two years done. Industry-ready." : `${N} semesters · 24 months`}
+                {progress >= 0.995 ? "Two years done. Industry-ready." : `${N} semesters · 24 months`}
               </span>
             </li>
           </ol>

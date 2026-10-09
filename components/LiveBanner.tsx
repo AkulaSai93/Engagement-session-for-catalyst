@@ -4,7 +4,7 @@ import { liveSession as s } from "@/lib/data";
 
 export function LiveBanner() {
   return (
-    <div className="relative -mx-4 -mt-10 overflow-hidden bg-[#07070c] text-white sm:mx-0 sm:mt-0 sm:rounded-2xl">
+    <div className="relative -mx-4 overflow-hidden bg-[#07070c] text-white sm:mx-0 sm:mt-0 sm:rounded-2xl">
       <div className="absolute inset-y-0 right-0 w-full sm:w-[60%]">
         <Image src={s.image} alt="" fill priority className="object-cover object-center" sizes="(max-width:640px) 100vw, 60vw" />
         <div className="absolute inset-0 bg-[#07070c]/70 sm:bg-transparent sm:bg-gradient-to-r sm:from-[#07070c] sm:via-[#07070c]/40 sm:to-transparent" />
