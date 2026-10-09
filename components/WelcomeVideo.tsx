@@ -61,7 +61,7 @@ export function WelcomeVideo() {
   if (hidden) {
     return (
       <button type="button" onClick={expand} aria-label="Show welcome video"
-        className="group fixed bottom-2 right-2 z-30 grid size-[92px] place-items-center transition hover:scale-105 sm:bottom-4 sm:right-4 sm:size-[112px]">
+        className="group fixed bottom-2 right-2 z-30 grid size-[150px] place-items-center transition hover:scale-105 sm:bottom-4 sm:right-4 sm:size-[140px]">
         {/* the film keeps playing inside the bubble, with its name orbiting around it */}
         <svg viewBox="0 0 100 100" aria-hidden
           className="absolute inset-0 size-full animate-[ring-spin_16s_linear_infinite] text-brand [animation-play-state:running] group-hover:[animation-duration:6s]">
@@ -73,14 +73,14 @@ export function WelcomeVideo() {
           </text>
         </svg>
 
-        <span className="relative block size-[58px] overflow-hidden rounded-full shadow-[0_8px_24px_rgba(225,29,72,.45)] ring-2 ring-brand sm:size-[70px]">
+        <span className="relative block size-[96px] overflow-hidden rounded-full shadow-[0_8px_24px_rgba(225,29,72,.45)] ring-2 ring-brand sm:size-[90px]">
           {motion && !embed ? (
             <video ref={video} src={src} poster={w.poster} autoPlay muted loop playsInline className="size-full object-cover" />
           ) : (
             <Image src={w.poster} alt="" fill className="object-cover" sizes="70px" />
           )}
           <span className="absolute inset-0 grid place-items-center bg-black/35 transition group-hover:bg-black/15">
-            <Play className="size-4 translate-x-px fill-white text-white drop-shadow sm:size-5" />
+            <Play className="size-7 translate-x-px fill-white text-white drop-shadow" />
           </span>
         </span>
       </button>
@@ -91,32 +91,32 @@ export function WelcomeVideo() {
     <>
       {/* Floats at the bottom-right of the screen, playing silently, until dismissed. */}
       <button type="button" onClick={() => setOpen(true)} aria-label={`Play ${w.title}`}
-        className="group fixed bottom-3 right-3 z-30 w-[132px] overflow-hidden rounded-xl shadow-[0_10px_34px_rgba(0,0,0,.5)] ring-1 ring-white/20 transition hover:ring-white/50 sm:bottom-5 sm:right-5 sm:w-[224px]">
+        className="group fixed bottom-3 right-3 z-30 w-[270px] overflow-hidden rounded-xl shadow-[0_10px_34px_rgba(0,0,0,.5)] ring-1 ring-white/20 transition hover:ring-white/50 sm:bottom-5 sm:right-5 sm:w-[290px]">
         <span className="relative block aspect-video">
           {motion && !embed ? (
             <video ref={video} src={src} poster={w.poster} autoPlay muted loop playsInline className="size-full object-cover" />
           ) : (
-            <Image src={w.poster} alt="" fill className="object-cover" sizes="224px" />
+            <Image src={w.poster} alt="" fill className="object-cover" sizes="290px" />
           )}
           <span className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
           {/* label pill */}
-          <span className="absolute bottom-1.5 left-1.5 flex items-center gap-1.5 rounded-full bg-black/55 px-2 py-1 text-[8.5px] font-bold uppercase tracking-[1px] text-white backdrop-blur transition group-hover:bg-brand sm:bottom-2.5 sm:left-2.5 sm:gap-2 sm:px-2.5 sm:text-[10px]">
-            <Play className="size-2.5 fill-current sm:size-3" /> {w.title}
+          <span className="absolute bottom-1.5 left-1.5 flex items-center gap-1.5 rounded-full bg-black/55 px-3.5 py-1.5 text-[11.5px] font-bold uppercase tracking-[1px] text-white backdrop-blur transition group-hover:bg-brand sm:bottom-3 sm:left-3 sm:gap-2 sm:px-3.5 sm:text-[12px]">
+            <Play className="size-3.5 fill-current sm:size-4" /> {w.title}
           </span>
 
           <span onClick={collapse} role="button" tabIndex={0}
             onKeyDown={(e) => e.key === "Enter" && collapse(e as unknown as React.MouseEvent)}
             aria-label="Minimise welcome video"
-            className="absolute left-1.5 top-1.5 grid size-6 place-items-center rounded-full bg-black/55 text-white backdrop-blur transition hover:bg-black/80 sm:left-2.5 sm:top-2.5 sm:size-7">
-            <X className="size-3 sm:size-3.5" />
+            className="absolute left-2 top-2 grid size-8 place-items-center rounded-full bg-black/55 text-white backdrop-blur transition hover:bg-black/80 sm:left-2.5 sm:top-2.5 sm:size-8">
+            <X className="size-3.5 sm:size-4" />
           </span>
           {motion && !embed && (
             <span onClick={toggleSound} role="button" tabIndex={0}
               onKeyDown={(e) => e.key === "Enter" && toggleSound(e as unknown as React.MouseEvent)}
               aria-label={muted ? "Unmute" : "Mute"}
-              className="absolute right-1.5 top-1.5 grid size-6 place-items-center rounded-full bg-black/55 text-white backdrop-blur transition hover:bg-black/80 sm:right-2.5 sm:top-2.5 sm:size-7">
-              {muted ? <VolumeX className="size-3 sm:size-3.5" /> : <Volume2 className="size-3 sm:size-3.5" />}
+              className="absolute right-2 top-2 grid size-8 place-items-center rounded-full bg-black/55 text-white backdrop-blur transition hover:bg-black/80 sm:right-2.5 sm:top-2.5 sm:size-8">
+              {muted ? <VolumeX className="size-3.5 sm:size-4" /> : <Volume2 className="size-3.5 sm:size-4" />}
             </span>
           )}
         </span>
