@@ -62,10 +62,10 @@ export function ReserveSeat() {
         <div className="col-span-2 flex min-w-0 flex-col justify-center pt-2.5 md:flex-1 md:py-4 md:pr-6">
           <span className="hidden w-max items-center gap-1.5 whitespace-nowrap rounded-full bg-brand/15 md:flex px-2.5 py-1 text-[10px] font-bold uppercase tracking-[1.5px] text-brand-2 ring-1 ring-brand/40">
             <span className="relative flex size-2"><span className="absolute inset-0 animate-ping rounded-full bg-brand-2" /><span className="relative size-2 rounded-full bg-brand-2" /></span>
-            <LockOpen className="size-3.5" /> Free access unlocked<span className="md:hidden"> · 10 days</span>
+            <LockOpen className="size-3.5" /> Free access unlocked<span className="md:hidden"> · {fa.days} days</span>
           </span>
           <p className="text-[16px] font-extrabold leading-tight tracking-tight md:mt-2 md:text-[24px]">
-            Your 10-Day Free Access Is{" "}
+            Your {fa.days}-Day Free Access Is{" "}
             <span className="bg-gradient-to-r from-brand-2 to-rose-300 bg-clip-text text-transparent">Unlocked</span>
           </p>
           <p className="mt-1.5 hidden text-[14px] leading-snug text-white/80 md:block">

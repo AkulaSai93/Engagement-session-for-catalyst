@@ -6,6 +6,7 @@ import { WhyCatalyst } from "@/components/WhyCatalyst";
 import { UpcomingSessions } from "@/components/UpcomingSessions";
 import { PastRecordings } from "@/components/PastRecordings";
 import { Roadmap } from "@/components/Roadmap";
+import { Projects } from "@/components/Projects";
 
 export default function EngagementPage() {
   return (
@@ -19,6 +20,7 @@ export default function EngagementPage() {
           <UpcomingSessions />
           <PastRecordings />
           <Roadmap />
+          <Projects />
         </div>
         <WelcomeVideo />
       </main>

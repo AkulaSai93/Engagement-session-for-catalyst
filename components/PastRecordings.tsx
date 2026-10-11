@@ -13,7 +13,7 @@ export function PastRecordings() {
   const [open, setOpen] = useState<Recording | null>(null);
   return (
     <section className="pt-8">
-      <SectionHeader title="Past Recordings" sub="Missed one? Catch up:" subClass="text-brand" action={<AllRecordings onPlay={setOpen} />} />
+      <SectionHeader title="Past Recordings" sub="Missed one? Catch up:" action={<AllRecordings onPlay={setOpen} />} />
       <div className="grid gap-4 lg:grid-cols-[1fr_1.2fr]">
         <div className="flex flex-col gap-3">
           {recordings.slice(0, 3).map((r) => (

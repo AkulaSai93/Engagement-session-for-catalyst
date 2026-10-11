@@ -1,6 +1,6 @@
 // Section heading: bold title with a short line underneath. Colours vary per section (per design).
 export function SectionHeader({
-  title, sub, titleClass = "text-ink", subClass = "text-muted", action,
+  title, sub, titleClass = "text-brand", subClass = "text-muted", action,
 }: { title: string; sub: string; titleClass?: string; subClass?: string; action?: React.ReactNode }) {
   return (
     <div className="mb-5 flex items-end justify-between gap-4">

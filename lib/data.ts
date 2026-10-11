@@ -188,7 +188,7 @@ export const roadmap: {
 // SAMPLE: replace with the signed-in student's real values from your backend.
 export const freeAccess = {
   startedAt: "2026-10-06T10:00:00+05:30", // when the student signed up
-  days: 10,                               // length of free access
+  days: 7,                                // length of free access
   reserved: false,                        // true once the ₹499 block amount is paid → hides the offer
   price: 499,
   payHref: "#razorpay",                   // Razorpay checkout / payment link (opened from the "Pay ₹499" button)
@@ -207,3 +207,24 @@ export const welcomeVideo = {
   poster: thumb("where-tech-is-heading"),
   videoUrl: "",
 };
+
+// ── Projects & achievements ──────────────────────────────────────────────────
+// Figma: SOT-Online › "Your college may be anywhere. Your ambition can be global." (751:321)
+export const projectsLead = {
+  count: "100+",
+  title: "Projects you'll build",
+  body: "Ship full-stack, systems and AI products across the 2 years — real products, not classroom assignments.",
+};
+
+export type Achievement = {
+  word: string; title: string; body: string; image: string;
+  bg: string; tint: string; wide?: boolean;
+};
+const ach = (name: string) => `/images/achievements/${name}.png`;
+
+export const achievements: Achievement[] = [
+  { word: "ICPC", title: "ICPC", body: "Train seriously to compete at the highest levels of competitive programming.", image: ach("icpc"), bg: "#FDEDED", tint: "#F7D2D2" },
+  { word: "CODE", title: "Codeforces / CodeChef", body: "Build your problem-solving skills and competitive coding profile.", image: ach("code"), bg: "#EAF4EC", tint: "#D3E8D8" },
+  { word: "GOOGLE", title: "Google Summer of Code", body: "Build towards the open-source skills and contribution track needed to aim for GSoC.", image: ach("gsoc"), bg: "#FDF2DF", tint: "#F6E2BB" },
+  
+];

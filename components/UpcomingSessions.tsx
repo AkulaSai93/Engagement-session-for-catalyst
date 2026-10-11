@@ -56,7 +56,7 @@ export function UpcomingSessions() {
 
   return (
     <section className="pt-7">
-      <SectionHeader title="Upcoming Sessions" sub="This week:" titleClass="text-brand"
+      <SectionHeader title="Upcoming Sessions" sub="This week:"
         action={
           <div className="hidden gap-3 sm:flex">
             <button aria-label="Previous" onClick={() => scroll(-1)} className={arrow}><ChevronLeft className="size-5" /></button>

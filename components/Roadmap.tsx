@@ -152,8 +152,8 @@ export function Roadmap() {
   const reached = (i: number) => !!stops[i] && progress >= stops[i].t;
 
   return (
-    <section className="pb-10 pt-10 sm:pb-40">
-      <SectionHeader title={`${N} semester, one clear path`} sub="2-year Roadmap" titleClass="text-brand !text-[26px]" subClass="!text-[15px] text-muted" />
+    <section className="pt-8">
+      <SectionHeader title={`${N} semester, one clear path`} sub="2-year Roadmap" />
 
       {/* Map-like backdrop: soft colour glows over a faint dot grid */}
       <div className="relative mt-8 overflow-hidden rounded-[28px] border border-line bg-white px-5 pb-8 pt-8 sm:px-10 sm:pb-24 sm:pt-14">
