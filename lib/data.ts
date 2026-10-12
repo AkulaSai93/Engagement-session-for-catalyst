@@ -22,6 +22,21 @@ export const usps = [
   { icon: "🎯", stat: "₹1 Cr", title: "Total prize pool", body: "Across all 4 semesters — the largest student prize pool in the country.", tint: "bg-emerald-50 text-emerald-600" },
 ];
 
+// Shown after a successful ₹499 payment, and again on the page if the student skipped it.
+export const community = {
+  title: "You're in. Seat reserved.",
+  body: "Your ₹499 payment went through — your Catalyst seat is confirmed.",
+  steps: [
+    { title: "Join your batch community", body: "Connect with your peers, mentors and get all important updates on WhatsApp." },
+    { title: "Get session reminders & updates", body: "We'll share schedules, links and important announcements in the group." },
+    { title: "Show up for your first live session", body: "Learn, interact and kickstart your Catalyst journey." },
+  ],
+  ctaTitle: "Join the Catalyst WhatsApp community",
+  ctaBody: "Session reminders, assignment help and everything your batch is talking about.",
+  href: "https://chat.whatsapp.com/", // TODO: replace with the real community invite link
+  cta: "Join on WhatsApp",
+};
+
 // Reward for the most consistent students across the engagement sessions.
 export const merchReward = {
   rank: "Top 10",

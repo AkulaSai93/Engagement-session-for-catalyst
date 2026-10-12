@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, LockOpen } from "lucide-react";
 import { freeAccess as fa } from "@/lib/data";
+import { CommunityInvite } from "./CommunityInvite";
+import { useReserved } from "@/lib/reserved";
 // TODO: re-enable the reserve/checkout screen when the payment flow is ready.
 // import { ReserveCheckout } from "./ReserveCheckout";
 
@@ -49,8 +51,11 @@ function Flap({ v, label, urgent }: { v: number; label: string; urgent: boolean 
 // Full-width "event ticket" strip pinned under the top bar until the seat is reserved.
 export function ReserveSeat() {
   const t = useCountdown();
+  const { reserved, reserve } = useReserved();
+  const [done, setDone] = useState(false);
   // const [open, setOpen] = useState(false); // TODO: restore with the checkout screen
-  if (fa.reserved) return null;
+  // Once reserved the strip disappears, but the success popup must stay until it is closed.
+  if (fa.reserved || reserved) return done ? <CommunityInvite onClose={() => setDone(false)} /> : null;
 
   return (
     <div className="relative overflow-hidden bg-black text-white">
@@ -98,8 +103,8 @@ export function ReserveSeat() {
         </div>
 
         {/* Ticket stub CTA with perforated edge */}
-        {/* TODO: onClick={() => setOpen(true)} — opens the reserve/checkout screen */}
-        <button type="button"
+        {/* TODO: this should run on Razorpay's success callback, not on click. */}
+        <button type="button" onClick={() => { reserve(); setDone(true); }}
           className="group relative my-2 flex shrink-0 text-left items-center gap-2 rounded-xl bg-brand py-2 pl-3.5 pr-3 md:my-0 md:py-0 font-semibold transition hover:bg-brand-2 md:my-0 md:-mr-[52px] md:rounded-none md:gap-4 md:pl-9 md:pr-[52px] md:after:absolute md:after:inset-y-0 md:after:left-full md:after:w-[100vw] md:after:bg-inherit md:after:content-['']">
           {/* Ticket perforation: corner notches + evenly spaced bites, all the same size */}
           <span aria-hidden className="absolute -left-2.5 -top-2.5 hidden size-5 rounded-full bg-black md:block" />
@@ -120,6 +125,7 @@ export function ReserveSeat() {
         <div className="h-full bg-gradient-to-r from-brand-2 to-brand shadow-[0_0_10px_rgba(225,29,72,.8)] transition-[width] duration-1000" style={{ width: `${t.used * 100}%` }} />
       </div>
       {/* {open && <ReserveCheckout t={t} onClose={() => setOpen(false)} />} */}
+      {done && <CommunityInvite onClose={() => setDone(false)} />}
     </div>
   );
 }

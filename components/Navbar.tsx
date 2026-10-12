@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { ProfileSidebar } from "./ProfileSidebar";
 import { ReserveSeat } from "./ReserveSeat";
@@ -10,6 +10,18 @@ const links = ["Home", "Curriculum", "Student Journey", "ProjectBuilder Pro", "F
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  // The header shrinks once the reserve strip goes away, so the sticky sidebar
+  // reads its height from this variable instead of hard-coding an offset.
+  const navRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const el = navRef.current;
+    if (!el) return;
+    const set = () => document.documentElement.style.setProperty("--header-h", `${el.offsetHeight}px`);
+    set();
+    const ro = new ResizeObserver(set);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   // Lock page scroll and close on Esc while the mobile menu is open.
   useEffect(() => {
@@ -22,7 +34,7 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <nav className="sticky top-0 z-40 border-b-[0.5px] border-[#e5e7eb] bg-white">
+    <nav ref={navRef} className="sticky top-0 z-40 border-b-[0.5px] border-[#e5e7eb] bg-white">
       <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-3 px-4 py-3.5 sm:px-[52px] lg:py-[26px]">
         <button aria-label="Open menu" onClick={() => setOpen(true)}
           className="-ml-1 grid size-10 place-items-center rounded-lg transition hover:bg-bg lg:hidden">
