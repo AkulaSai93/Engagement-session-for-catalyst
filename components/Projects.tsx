@@ -25,7 +25,16 @@ export function Projects() {
       </div>
 
       {/* Achievements, no boxes — just the illustration and the words */}
-      <div className="grid gap-x-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-2 border-t border-line pt-8">
+        <h3 className="text-[22px] font-extrabold leading-tight tracking-[-0.8px] text-brand sm:text-[28px]">
+          More than just projects
+        </h3>
+        <p className="mt-1.5 text-[13px] leading-relaxed text-muted sm:text-[14px]">
+          Trained for the arenas that get you noticed.
+        </p>
+      </div>
+
+      <div className="mt-2 grid gap-x-8 sm:grid-cols-2 lg:grid-cols-3">
         {achievements.map((a, i) => (
           <div key={a.title}
             className={`group flex items-center gap-4 py-6 ${i < achievements.length - 1 ? "border-b border-line" : ""} ${
