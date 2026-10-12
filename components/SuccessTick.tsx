@@ -4,18 +4,21 @@ import { useEffect, useRef } from "react";
 import { Lottie, type LottieHandle } from "lottie-react";
 
 // The success.lottie animation, served from /public.
-// It plays once and holds the drawn tick — the file's last frames fade the
-// artwork out, so playback stops before them instead of ending on an empty box.
+// It plays once and then parks on the frame where the badge is fully drawn —
+// the file loops back to an empty burst straight after, so it is pinned there.
+const LAST = 68;
+
 export function SuccessTick({ className = "size-14" }: { className?: string }) {
   const ref = useRef<LottieHandle>(null);
   useEffect(() => {
-    const id = setTimeout(() => ref.current?.playSegments([25, 69]), 0);
-    return () => clearTimeout(id);
+    const play = setTimeout(() => ref.current?.play(), 0);
+    const hold = setTimeout(() => { ref.current?.seek(LAST); ref.current?.pause(); }, 1600);
+    return () => { clearTimeout(play); clearTimeout(hold); };
   }, []);
 
   return (
     <span className={`block shrink-0 ${className}`} aria-hidden>
-      <Lottie ref={undefined} lottieRef={ref} src="/lottie/success.json"
+      <Lottie lottieRef={ref} src="/lottie/success.json"
         className="h-full w-full [&_svg]:!h-full [&_svg]:!w-full" />
     </span>
   );
