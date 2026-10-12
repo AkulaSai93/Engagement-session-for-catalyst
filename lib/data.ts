@@ -187,7 +187,7 @@ export const roadmap: {
 // ── Free-access / seat reservation ───────────────────────────────────────────
 // SAMPLE: replace with the signed-in student's real values from your backend.
 export const freeAccess = {
-  startedAt: "2026-10-06T10:00:00+05:30", // when the student signed up
+  startedAt: "2026-10-12T10:00:00+05:30", // when the student signed up
   days: 7,                                // length of free access
   reserved: false,                        // true once the ₹499 block amount is paid → hides the offer
   price: 499,
@@ -215,6 +215,31 @@ export const projectsLead = {
   title: "Projects you'll build",
   body: "Ship full-stack, systems and AI products across the 2 years — real products, not classroom assignments.",
 };
+
+// Figma: Catalyst › Semester 1–4 project strips (1198:12964, 12993, 13022, 13044)
+export type SemesterProject = { sem: number; title: string; body: string; image: string; bg: string };
+const proj = (name: string) => `/images/projects/${name}.jpg`;
+
+export const semesterProjects: SemesterProject[] = [
+  { sem: 1, title: "Enterprise Integration Hub & Data Orchestration Platform", body: "Connect enterprise systems and automate data flow and synchronization.", image: proj("integration-hub"), bg: "#FFFFFF" },
+  { sem: 1, title: "Linux Security Audit & Monitoring Suite (LSAMS)", body: "Audit Linux systems for security risks and continuously monitor critical system activities and configurations.", image: proj("lsams"), bg: "#FFFFFF" },
+  { sem: 1, title: "Food Delivery App", body: "Build a responsive food-delivery homepage with restaurant/food sections, navigation, cards, and modern Tailwind CSS styling.", image: proj("food-delivery"), bg: "#FFFFFF" },
+  { sem: 1, title: "Personal Portfolio Page", body: "Build a personal portfolio website showcasing your profile, skills, projects, and contact information.", image: proj("portfolio"), bg: "#EDEAFD" },
+
+  { sem: 2, title: "CodeTutor AI – Coding Problem Assistant", body: "Create an AI-powered coding practice platform where users solve programming problems, receive hints from an AI tutor, track their progress, and earn badges and streaks.", image: proj("codetutor"), bg: "#EDEAFD" },
+  { sem: 2, title: "Git-Lytics – AI Code Review & Analytics Platform", body: "Build a developer platform that connects to GitHub/GitLab, analyzes pull requests with AI, tracks repository metrics, and provides real-time code-quality analytics.", image: proj("git-lytics"), bg: "#ECF2EC" },
+  { sem: 2, title: "Real-Time Bidding & Auction Platform", body: "Create a live auction system where users list items and place bids in real time, using Redis for caching, sessions, and instant bid updates.", image: proj("bidding"), bg: "#E6F2FF" },
+  { sem: 2, title: "AI-Powered Learning Path Generator", body: "Build an AI learning assistant that creates personalized roadmaps with courses, exercises, and next steps.", image: proj("learning-path"), bg: "#FFEBA9" },
+
+  { sem: 3, title: "Multi-Tenant SaaS Platform & Cloud-Native GitOps Management System", body: "Manage customers on a secure cloud platform with automated GitOps deployments.", image: proj("saas-gitops"), bg: "#FDEEE3" },
+  { sem: 3, title: "Real-Time Predictive Operations Intelligence Platform", body: "Analyze live operational data to predict issues, detect anomalies, and enable proactive business decisions.", image: proj("predictive-ops"), bg: "#E6F2FF" },
+  { sem: 3, title: "Enterprise Business Performance & Decision Intelligence Platform", body: "Unify business data into real-time insights and decision-ready analytics.", image: proj("decision-intel"), bg: "#E6F2FF" },
+
+  { sem: 4, title: "Autonomous Research Assistant", body: "An AI agent that plans, searches, verifies, and compiles multi-source research into structured, cited reports.", image: proj("research-agent"), bg: "#E6F2FF" },
+  { sem: 4, title: "Multi-Agent Customer Support System", body: "A team of specialized AI agents that triage, resolve, and escalate customer queries with built-in quality supervision.", image: proj("support-agents"), bg: "#FCFCFC" },
+  { sem: 4, title: "AI Product Manager Agent", body: "An autonomous agent that turns a raw product idea into a PRD, UI mockups, user stories, and a pitch deck.", image: proj("pm-agent"), bg: "#FDF8F2" },
+  { sem: 4, title: "Domain-Specific RAG Chatbot with Fine-Tuning", body: "A fine-tuned, retrieval-augmented chatbot delivering accurate, hallucination-controlled answers for a specialized domain.", image: proj("rag-chatbot"), bg: "#E4EFE7" },
+];
 
 export type Achievement = {
   word: string; title: string; body: string; image: string;

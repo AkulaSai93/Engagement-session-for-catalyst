@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { achievements, projectsLead as lead } from "@/lib/data";
+import { ProjectMarquee } from "./ProjectMarquee";
 import { SectionHeader } from "./SectionHeader";
 
 // No cards: the number and the achievements sit directly on the page, split by thin rules.
@@ -8,15 +9,19 @@ export function Projects() {
     <section className="pt-8">
       <SectionHeader title="Projects & Achievements" sub="What you'll build along the way:" />
 
-      {/* The number, stated plainly */}
-      <div className="flex flex-wrap items-center gap-x-8 gap-y-4 border-b border-line pb-8">
-        <p className="text-[76px] font-extrabold leading-[0.85] tracking-[-4px] text-brand sm:text-[104px]">{lead.count}</p>
-        <div className="min-w-[220px] flex-1">
-          <h3 className="text-[20px] font-bold leading-tight tracking-tight sm:text-[24px]">{lead.title}</h3>
-          <p className="mt-1.5 max-w-lg text-[13px] leading-relaxed text-muted sm:text-[14px]">{lead.body}</p>
+      {/* The number, on a tinted band so it reads as the headline of the section */}
+      <div className="py-4 sm:py-6">
+        <div className="flex flex-wrap items-center gap-x-10 gap-y-3">
+          <p className="text-[120px] font-extrabold leading-[0.78] tracking-[-7px] text-brand sm:text-[190px] sm:tracking-[-11px]">{lead.count}</p>
+          <div className="min-w-[220px] flex-1">
+            <h3 className="text-[26px] font-extrabold leading-[1.05] tracking-[-1px] text-ink sm:text-[38px] sm:tracking-[-1.6px]">{lead.title}</h3>
+            <p className="mt-3 max-w-lg text-[14px] leading-relaxed text-muted sm:text-[15px]">{lead.body}</p>
+          </div>
         </div>
-        <Image src="/images/achievements/build.png" alt="" width={400} height={298} unoptimized
-          className="hidden h-[120px] w-auto object-contain lg:block" />
+      </div>
+
+      <div className="py-7">
+        <ProjectMarquee />
       </div>
 
       {/* Achievements, no boxes — just the illustration and the words */}
