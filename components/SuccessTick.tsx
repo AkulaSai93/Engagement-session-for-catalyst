@@ -9,7 +9,7 @@ import { Lottie, type LottieHandle } from "lottie-react";
 export function SuccessTick({ className = "size-14" }: { className?: string }) {
   const ref = useRef<LottieHandle>(null);
   useEffect(() => {
-    const id = setTimeout(() => ref.current?.playSegments([25, 58]), 0);
+    const id = setTimeout(() => ref.current?.playSegments([25, 69]), 0);
     return () => clearTimeout(id);
   }, []);
 
