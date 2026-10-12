@@ -28,6 +28,7 @@ const L = {
   upgrad: logo("upgrad-sot.png"), linkedin: logo("linkedin.svg"), walmart: logo("walmart.svg"), paypal: logo("paypal.svg"),
   oracle: logo("oracle.svg"), cisco: logo("cisco.png"), barclays: logo("barclays.png"), iiitd: logo("iiitd.png"),
   pw: logo("pw.png"), ineuron: logo("ineuron.png"), salesforce: logo("salesforce.png"), microsoft: logo("microsoft.png"),
+  google: logo("google.png"), amazon: logo("amazon.png"),
 };
 // Where each mentor has worked/studied ("Mentors from" strip).
 const MENTOR_LOGOS: Record<string, string[]> = {
@@ -39,6 +40,7 @@ const MENTOR_LOGOS: Record<string, string[]> = {
   "Rishabh Bafna": [L.upgrad, L.iiitd],
   "Piyush Jain": [L.upgrad],
   "Rahul Yadav": [L.upgrad],
+  "Nilabhro Chakraborty": [L.google, L.amazon],
 };
 
 // ── Session catalogue: content from "SOT Online Engagement Sessions - Final.pdf" ──
@@ -50,7 +52,7 @@ export type Session = {
 };
 
 // Mentor photos in public/images/mentors/<slug>.jpg; mentors without one keep the placeholder avatar.
-const MENTOR_PHOTOS = new Set(["Bose Sir", "Vishwa Mohan", "Gaurav Kaushik", "Mithun S", "Gladden Rumao", "Jyoti Nigam", "Rishabh Bafna", "Piyush Jain", "Rahul Yadav"]);
+const MENTOR_PHOTOS = new Set(["Bose Sir", "Vishwa Mohan", "Gaurav Kaushik", "Mithun S", "Gladden Rumao", "Jyoti Nigam", "Rishabh Bafna", "Piyush Jain", "Rahul Yadav", "Nilabhro Chakraborty"]);
 export const mentorPhoto = (name: string) =>
   `/images/mentors/${name === "Bose Sir" ? "bose" : name.toLowerCase().replace(/\s+/g, "-")}.jpg`;
 
@@ -77,7 +79,7 @@ export const sessions: Session[] = [
     image: thumb("how-chatgpt-was-built"), connects: "Generative AI, Cloud",
     description: "ChatGPT isn't magic — it's a machine trained to guess the next word, at massive scale. Learn how it was built, why it gets things wrong, then build your own AI assistant.",
     learn: ["How LLMs predict the next word, and what tokens are", "How models are trained on internet-scale data and refined with human feedback", "Why AI hallucinates, and how to catch it", "How system instructions and your documents shape answers (the idea behind RAG)"] }),
-  S({ id: "data-decides", title: "Data Decides: How Companies Win with Numbers", speaker: "MAANG Engineer", role: "MAANG Mentor", avatar: avatar(44),
+  S({ id: "data-decides", title: "Data Decides: How Companies Win with Numbers", speaker: "Nilabhro Chakraborty", role: "Software Engineer - II @Google | Ex-SDE Amazon", avatar: avatar(44),
     image: thumb("data-decides"), connects: "Data Visualization, Machine Learning",
     description: "From Netflix thumbnails to IPL player picks and quick-commerce predictions — see how companies turn raw data into dashboards, experiments and predictions, and how statistics can mislead.",
     learn: ["How companies use data", "Data → insights → decisions", "Dashboards and visualisation", "Experiments and A/B testing", "How statistics can mislead", "Data Analyst, Data Scientist and ML Engineer roles"] }),
@@ -110,10 +112,13 @@ const byId = (id: string) => sessions.find((x) => x.id === id)!;
 
 // Placeholder schedule (replace with real dates). The PDF order is treated as chronological:
 // LinkedIn Orientation is live now; WhatsApp, Where Tech + the last two PDF sessions are past; the rest upcoming.
-const SLOTS = [["Thu", "8", "OCT", "6:00 PM"], ["Fri", "9", "OCT", "5:00 PM"], ["Sat", "10", "OCT", "11:00 AM"], ["Mon", "12", "OCT", "7:00 PM"],
-  ["Wed", "14", "OCT", "6:30 PM"], ["Fri", "16", "OCT", "5:00 PM"], ["Mon", "19", "OCT", "6:00 PM"], ["Wed", "21", "OCT", "6:30 PM"]];
+// Real schedule from "SOT Online Engagement Sessions - Final.pdf" — every session runs 4 PM – 6 PM.
+const SLOTS = [["Sat", "17", "OCT", "4:00 PM"], ["Sat", "24", "OCT", "4:00 PM"], ["Sat", "31", "OCT", "4:00 PM"],
+  ["Sat", "7", "NOV", "4:00 PM"], ["Sat", "14", "NOV", "4:00 PM"], ["Sat", "21", "NOV", "4:00 PM"],
+  ["Sat", "28", "NOV", "4:00 PM"], ["Sat", "5", "DEC", "4:00 PM"], ["Sat", "12", "DEC", "4:00 PM"],
+  ["Sat", "19", "DEC", "4:00 PM"], ["Sat", "26", "DEC", "4:00 PM"]];
 
-export const upcoming = ["chatgpt", "data-decides", "big-tech", "google-search", "ai-agents", "recommendations"]
+export const upcoming = ["whatsapp", "linkedin", "where-tech", "chatgpt", "data-decides", "big-tech"]
   .map((id, i) => {
     const [day, date, month, time] = SLOTS[i];
     const x = byId(id);
