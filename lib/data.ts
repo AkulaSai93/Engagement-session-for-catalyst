@@ -40,9 +40,7 @@ export const community = {
 // Reward for the most consistent students across the engagement sessions.
 export const merchReward = {
   rank: "Top 10",
-  title: "Stay consistent, win upGrad SOT merch",
-  body: "Attend, submit, climb the leaderboard.",
-  note: "Only the 10 most consistent students take it home",
+  title: "learners with high engagement stand a chance to win upGrad SOT merch",
 };
 
 // Company logos shown under each speaker. Files live in public/images/logos/.
@@ -52,6 +50,8 @@ const L = {
   oracle: logo("oracle.svg"), cisco: logo("cisco.png"), barclays: logo("barclays.png"), iiitd: logo("iiitd.png"),
   pw: logo("pw.png"), ineuron: logo("ineuron.png"), salesforce: logo("salesforce.png"), microsoft: logo("microsoft.png"),
   google: logo("google.png"), amazon: logo("amazon.png"),
+  flipkart: logo("flipkart.png"), visa: logo("visa.png"),
+  adobe: logo("adobe.png"), deloitte: logo("deloitte.png"), bain: logo("bain.png"), zivame: logo("zivame.png"),
 };
 // Where each mentor has worked/studied ("Mentors from" strip).
 const MENTOR_LOGOS: Record<string, string[]> = {
@@ -63,7 +63,8 @@ const MENTOR_LOGOS: Record<string, string[]> = {
   "Rishabh Bafna": [L.upgrad, L.iiitd],
   "Piyush Jain": [L.upgrad],
   "Rahul Yadav": [L.upgrad],
-  "Nilabhro Chakraborty": [L.google, L.amazon],
+  "Kartik Bajaj": [L.adobe, L.deloitte, L.bain, L.zivame],
+  "Shruti Grover": [L.microsoft, L.flipkart, L.visa],
 };
 
 // ── Session catalogue: content from "SOT Online Engagement Sessions - Final.pdf" ──
@@ -75,7 +76,7 @@ export type Session = {
 };
 
 // Mentor photos in public/images/mentors/<slug>.jpg; mentors without one keep the placeholder avatar.
-const MENTOR_PHOTOS = new Set(["Bose Sir", "Vishwa Mohan", "Gaurav Kaushik", "Mithun S", "Gladden Rumao", "Jyoti Nigam", "Rishabh Bafna", "Piyush Jain", "Rahul Yadav", "Nilabhro Chakraborty"]);
+const MENTOR_PHOTOS = new Set(["Bose Sir", "Vishwa Mohan", "Gaurav Kaushik", "Mithun S", "Gladden Rumao", "Jyoti Nigam", "Rishabh Bafna", "Piyush Jain", "Rahul Yadav", "Shruti Grover"]);
 export const mentorPhoto = (name: string) =>
   `/images/mentors/${name === "Bose Sir" ? "bose" : name.toLowerCase().replace(/\s+/g, "-")}.jpg`;
 
@@ -90,7 +91,7 @@ export const sessions: Session[] = [
     image: thumb("linkedin-orientation"), connects: "Career & Personal Branding",
     description: "Profile setup, headline crafting, connection strategy and personal branding.",
     learn: ["Create or update your LinkedIn profile", "Write a headline that stands out", "Build a connection strategy", "Connect with 5 classmates"] }),
-  S({ id: "whatsapp", title: "How WhatsApp Was Built", speaker: "MAANG Engineer", role: "MAANG Mentor", avatar: avatar(8),
+  S({ id: "whatsapp", title: "How WhatsApp Was Built", speaker: "Shruti Grover", role: "SWE @Microsoft | Ex Flipkart & Visa", avatar: avatar(8),
     image: thumb("how-whatsapp-was-built"), connects: "System Design, Computer Networks",
     description: "A famously small team built an app that billions rely on every day. Break down the engineering decisions that make it fast, reliable and private.",
     learn: ["How a message travels from your phone to a friend's in milliseconds", "What servers, databases and load balancers do", "How end-to-end encryption keeps chats private", "Core system design ideas: scale, reliability and trade-offs"] }),
@@ -102,7 +103,7 @@ export const sessions: Session[] = [
     image: thumb("how-chatgpt-was-built"), connects: "Generative AI, Cloud",
     description: "ChatGPT isn't magic — it's a machine trained to guess the next word, at massive scale. Learn how it was built, why it gets things wrong, then build your own AI assistant.",
     learn: ["How LLMs predict the next word, and what tokens are", "How models are trained on internet-scale data and refined with human feedback", "Why AI hallucinates, and how to catch it", "How system instructions and your documents shape answers (the idea behind RAG)"] }),
-  S({ id: "data-decides", title: "Data Decides: How Companies Win with Numbers", speaker: "Nilabhro Chakraborty", role: "Software Engineer - II @Google | Ex-SDE Amazon", avatar: avatar(44),
+  S({ id: "data-decides", title: "Data Decides: How Companies Win with Numbers", speaker: "Kartik Bajaj", role: "Computer Scientist at Adobe", avatar: avatar(44),
     image: thumb("data-decides"), connects: "Data Visualization, Machine Learning",
     description: "From Netflix thumbnails to IPL player picks and quick-commerce predictions — see how companies turn raw data into dashboards, experiments and predictions, and how statistics can mislead.",
     learn: ["How companies use data", "Data → insights → decisions", "Dashboards and visualisation", "Experiments and A/B testing", "How statistics can mislead", "Data Analyst, Data Scientist and ML Engineer roles"] }),
@@ -240,7 +241,7 @@ export const welcomeVideo = {
 // Figma: SOT-Online › "Your college may be anywhere. Your ambition can be global." (751:321)
 export const projectsLead = {
   count: "100+",
-  title: "Projects you'll build",
+  title: "Projects you'll ship",
   body: "Ship full-stack, systems and AI products across the 2 years — real products, not classroom assignments.",
 };
 

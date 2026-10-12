@@ -18,10 +18,10 @@ export default function EngagementPage() {
         <ProfileSidebar />
         <div className="min-w-0">
           <JoinCommunity />
-          <MerchReward />
           <LiveBanner />
           <WhyCatalyst />
           <UpcomingSessions />
+          <MerchReward />
           <PastRecordings />
           <Roadmap />
           <Projects />

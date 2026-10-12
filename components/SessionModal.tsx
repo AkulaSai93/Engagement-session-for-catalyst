@@ -56,7 +56,7 @@ export function SessionModal({ session, onClose }: { session: Session; onClose: 
 
           <div className="mt-4 rounded-xl bg-bg px-3 py-2.5">
             <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-[1px] text-dim">Mentors from</p>
-            <CompanyLogos logos={session.logos} className="gap-x-5 [&_img]:max-w-[64px] [&_img]:scale-125" />
+            <CompanyLogos logos={session.logos} maxW={64} className="gap-x-5" />
           </div>
         </div>
     </Modal>

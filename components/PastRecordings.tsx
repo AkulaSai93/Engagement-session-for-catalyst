@@ -33,7 +33,7 @@ export function PastRecordings() {
               <div className="hidden w-[96px] shrink-0 flex-col items-center sm:flex gap-0.5 border-l border-line pl-3 text-center">
                 <Image src={r.avatar} alt={r.speaker} width={28} height={28} className="size-7 rounded-full object-cover ring-2 ring-white shadow-[0_0_0_1px_var(--color-line)]" />
                 <p className="w-full truncate text-[11px] font-semibold leading-tight">{r.speaker}</p>
-                <CompanyLogos logos={r.logos} className="origin-top scale-90 justify-center gap-x-1.5 [&_img]:max-w-[34px]" />
+                <CompanyLogos logos={r.logos} maxW={38} className="origin-top scale-90 justify-center gap-x-2.5" />
               </div>
             </button>
           ))}

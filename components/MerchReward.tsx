@@ -1,19 +1,18 @@
 import { merchReward as m } from "@/lib/data";
 
-// Not a card and not a banner: a borderless notice held between two hairlines,
-// sitting straight on the page background above the live banner.
+// Not a card and not a banner: a borderless notice sitting straight on the page
+// background above the live banner.
 const TICKER = ["T-shirt", "Hoodie", "Sticker pack", "Bottle", "Tote bag"];
 
 export function MerchReward() {
   return (
-    <div className="mb-7 pb-2 sm:pb-4">
-      <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
-        <p className="text-[56px] font-extrabold leading-[0.85] tracking-[-3px] text-brand sm:text-[76px] sm:tracking-[-4px]">
+    <div className="pt-8">
+      <div className="flex flex-col items-start gap-y-1 sm:flex-row sm:items-center sm:gap-x-5">
+        <p className="shrink-0 text-[38px] font-extrabold leading-[0.85] tracking-[-2px] text-brand sm:text-[60px] sm:tracking-[-3.5px]">
           {m.rank}
         </p>
-        <div className="min-w-[240px] flex-1">
-          <h3 className="text-[20px] font-extrabold leading-tight tracking-[-0.6px] sm:text-[26px] sm:tracking-[-1px]">{m.title}</h3>
-          <p className="mt-1.5 max-w-xl text-[13px] leading-relaxed text-muted sm:text-[14.5px]">{m.body}</p>
+        <div className="min-w-0 flex-1">
+          <h3 className="whitespace-nowrap text-[clamp(9px,2.7vw,20px)] font-extrabold leading-tight tracking-[-0.3px] sm:tracking-[-0.7px]">{m.title}</h3>
         </div>
       </div>
 

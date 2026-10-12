@@ -63,7 +63,7 @@ export function AllRecordings({ onPlay }: { onPlay: (r: (typeof all)[number]) =>
                         <p className="text-[11px] text-dim">{r.date}</p>
                       </div>
                     </div>
-                    <CompanyLogos logos={r.logos} nowrap className="mt-3 justify-between gap-x-1.5 rounded-lg bg-bg px-2 py-1.5 [&_img]:max-w-[32px]" />
+                    <CompanyLogos logos={r.logos} nowrap maxW={38} className="mt-3 gap-x-3 rounded-lg bg-bg px-2 py-1.5" />
                   </div>
                 </button>
               ))}
