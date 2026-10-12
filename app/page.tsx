@@ -4,6 +4,7 @@ import { LiveBanner } from "@/components/LiveBanner";
 import { WelcomeVideo } from "@/components/WelcomeVideo";
 import { WhyCatalyst } from "@/components/WhyCatalyst";
 import { UpcomingSessions } from "@/components/UpcomingSessions";
+import { MerchReward } from "@/components/MerchReward";
 import { PastRecordings } from "@/components/PastRecordings";
 import { Roadmap } from "@/components/Roadmap";
 import { Projects } from "@/components/Projects";
@@ -15,6 +16,7 @@ export default function EngagementPage() {
       <main className="mx-auto grid max-w-[1440px] gap-6 px-4 py-10 sm:px-20 lg:grid-cols-[284px_1fr]">
         <ProfileSidebar />
         <div className="min-w-0">
+          <MerchReward />
           <LiveBanner />
           <WhyCatalyst />
           <UpcomingSessions />

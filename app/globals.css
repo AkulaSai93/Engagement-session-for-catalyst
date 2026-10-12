@@ -12,6 +12,8 @@
   --color-cream: #fff8ea;
   --font-sans: var(--font-bricolage), system-ui, sans-serif;
   --animate-blink: blink 1.4s infinite;
+  --animate-merch: merch 14s linear infinite;
+  @keyframes merch { to { transform: translateX(-50%); } }
   @keyframes blink { 50% { opacity: 0.25; } }
 }
 

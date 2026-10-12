@@ -22,6 +22,14 @@ export const usps = [
   { icon: "🎯", stat: "₹1 Cr", title: "Total prize pool", body: "Across all 4 semesters — the largest student prize pool in the country.", tint: "bg-emerald-50 text-emerald-600" },
 ];
 
+// Reward for the most consistent students across the engagement sessions.
+export const merchReward = {
+  rank: "Top 10",
+  title: "Stay consistent, win upGrad SOT merch",
+  body: "Attend, submit, climb the leaderboard.",
+  note: "Only the 10 most consistent students take it home",
+};
+
 // Company logos shown under each speaker. Files live in public/images/logos/.
 export const logo = (name: string) => `/images/logos/${name}`;
 const L = {
