@@ -1,5 +1,6 @@
 export const thumb = (name: string) => `/images/sessions/${name}.jpg`;
-export const avatar = (n: number) => `https://i.pravatar.cc/120?img=${n}`;
+// Neutral stand-in until a mentor's real photo lands in public/images/mentors/.
+export const avatar = (_n: number) => "/images/mentors/placeholder.svg";
 
 export const liveSession = {
   title: "LinkedIn",

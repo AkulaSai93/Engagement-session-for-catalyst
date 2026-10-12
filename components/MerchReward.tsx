@@ -7,12 +7,12 @@ const TICKER = ["T-shirt", "Hoodie", "Sticker pack", "Bottle", "Tote bag"];
 export function MerchReward() {
   return (
     <div className="pt-8">
-      <div className="flex flex-col items-start gap-y-1 sm:flex-row sm:items-center sm:gap-x-5">
-        <p className="shrink-0 text-[38px] font-extrabold leading-[0.85] tracking-[-2px] text-brand sm:text-[60px] sm:tracking-[-3.5px]">
+      <div className="flex flex-col items-start gap-y-1.5 sm:flex-row sm:items-center sm:gap-x-5">
+        <p className="shrink-0 text-[34px] font-extrabold leading-[0.85] tracking-[-1.6px] text-brand sm:text-[60px] sm:tracking-[-3.5px]">
           {m.rank}
         </p>
         <div className="min-w-0 flex-1">
-          <h3 className="whitespace-nowrap text-[clamp(9px,2.7vw,20px)] font-extrabold leading-tight tracking-[-0.3px] sm:tracking-[-0.7px]">{m.title}</h3>
+          <h3 className="text-[14px] font-extrabold leading-snug tracking-[-0.3px] sm:whitespace-nowrap sm:text-[clamp(13px,1.45vw,20px)] sm:leading-tight sm:tracking-[-0.7px]">{m.title}</h3>
         </div>
       </div>
 

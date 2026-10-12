@@ -1,6 +1,6 @@
 import { CreditCard, GraduationCap, Radio, User } from "lucide-react";
 import Image from "next/image";
-import { avatar } from "@/lib/data";
+// (avatar helper no longer needed here — the student photo is its own placeholder)
 
 const items = [
   { icon: User, title: "Personal Details", sub: "Basic & contact information" },
@@ -15,7 +15,7 @@ export function ProfileSidebar({ className = "hidden lg:block lg:sticky lg:top-[
       <h2 className="text-xl font-semibold">My Profile</h2>
       <p className="mt-1.5 text-[13px] leading-snug text-muted">Manage your personal information and preferences</p>
       <div className="my-5 flex flex-col items-center border-y border-line py-5">
-        <Image src={avatar(12)} alt="" width={80} height={80} className="rounded-full" />
+        <Image src="https://i.pravatar.cc/120?img=12" alt="" width={80} height={80} className="rounded-full" />
         <p className="mt-3 text-base font-medium">Your Name</p>
         <span className="mt-1.5 rounded-full border border-brand/40 px-3 py-0.5 text-[11px] font-medium text-brand">STUDENT</span>
       </div>
