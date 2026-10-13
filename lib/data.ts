@@ -96,7 +96,7 @@ export type Session = {
 };
 
 // Mentor photos in public/images/mentors/<slug>.jpg; mentors without one keep the placeholder avatar.
-const MENTOR_PHOTOS = new Set(["Bose Sir", "Vishwa Mohan", "Gaurav Kaushik", "Mithun S", "Gladden Rumao", "Jyoti Nigam", "Rishabh Bafna", "Piyush Jain", "Rahul Yadav", "Shruti Grover"]);
+const MENTOR_PHOTOS = new Set(["Bose Sir", "Vishwa Mohan", "Gaurav Kaushik", "Mithun S", "Gladden Rumao", "Jyoti Nigam", "Rishabh Bafna", "Piyush Jain", "Rahul Yadav", "Shruti Grover", "Kartik Bajaj"]);
 export const mentorPhoto = (name: string) =>
   `/images/mentors/${name === "Bose Sir" ? "bose" : name.toLowerCase().replace(/\s+/g, "-")}.jpg`;
 
