@@ -23,6 +23,25 @@ export const usps = [
   { icon: "🎯", stat: "₹1 Cr", title: "Total prize pool", body: "Across all 4 semesters — the largest student prize pool in the country.", tint: "bg-emerald-50 text-emerald-600" },
 ];
 
+// The "Block Your Seat" checkout screen.
+export const checkout = {
+  applicant: { name: "SAI", email: "sai@upgradsot.com", mobile: "+91 90816 83490" },
+  program: { name: "Catalyst by uGSOT — 2-Year Online Technology Accelerator", cohort: "January 2027 · Online" },
+  closes: "Closes 20 Oct 2026",
+  note: "A one-time amount to confirm your place. Seats in the January 2027 cohort are allotted in order of payment.",
+  backed: "Backed by upGrad — 10M+ learners and 110K+ placements",
+  shareUrl: "catalyst.upgradsot.com/pay/...",
+  shareLink: "https://catalyst.upgradsot.com/pay/share/8f2a41c", // TODO: generate per applicant
+  faqs: [
+    { q: "What does this ₹499 confirm?", a: "It registers you for the upcoming Catalyst cohort and unlocks onboarding. The program fee is raised separately once your place is confirmed." },
+    { q: "Is uGSOT Catalyst the online version of upGrad School of Technology?", a: "Yes. It runs the same curriculum and mentor network online, alongside whatever degree you are already studying." },
+    { q: "Do I leave my current college?", a: "No. Catalyst runs alongside your degree — sessions are in the evenings and on weekends." },
+    { q: "Is Catalyst a degree?", a: "No. It is a 2-year technology accelerator that sits on top of your degree, built around projects, mentorship and placements." },
+    { q: "What happens after two years?", a: "You finish with 100+ shipped projects, a tracked GitHub profile and access to the placement network." },
+    { q: "Is the ₹499 refundable?", a: "The seat booking amount is adjusted against your program fee. Write to us if your plans change before the cohort starts." },
+  ],
+};
+
 // Shown after a successful ₹499 payment, and again on the page if the student skipped it.
 export const community = {
   title: "You're in. Seat reserved.",
