@@ -21,12 +21,12 @@ export function StageSwitcher() {
 
   return (
     <div role="group" aria-label="Preview student stage"
-      className="fixed bottom-4 left-1/2 z-[60] flex -translate-x-1/2 items-center gap-1 rounded-full bg-ink/90 p-1 text-[12px] font-semibold text-white shadow-[0_10px_30px_rgba(0,0,0,.3)] ring-1 ring-white/10 backdrop-blur">
+      className="fixed bottom-4 left-1/2 z-[60] flex -translate-x-1/2 items-center gap-1 rounded-lg bg-ink/90 p-1 text-[12px] font-semibold text-white shadow-[0_10px_30px_rgba(0,0,0,.3)] ring-1 ring-white/10 backdrop-blur">
       <span className="hidden px-2.5 text-[10px] uppercase tracking-[1.2px] text-white/50 sm:block">Preview</span>
       {chips.map((c, i) => (
         <button key={c.stage} type="button" aria-pressed={stage === c.stage}
           onClick={() => { resetPayment(); setPreview(c.stage); }}
-          className={`whitespace-nowrap rounded-full px-3 py-1.5 transition ${stage === c.stage ? "bg-brand text-white" : "text-white/75 hover:bg-white/10 hover:text-white"}`}>
+          className={`whitespace-nowrap rounded-md px-3 py-1.5 transition ${stage === c.stage ? "bg-brand text-white" : "text-white/75 hover:bg-white/10 hover:text-white"}`}>
           {i + 1} · {c.label}
         </button>
       ))}
