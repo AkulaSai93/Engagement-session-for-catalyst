@@ -8,6 +8,7 @@ import { upcoming } from "@/lib/data";
 import { SectionHeader } from "./SectionHeader";
 import { CompanyLogos } from "./CompanyLogos";
 import { SessionModal } from "./SessionModal";
+import { LockBadge, LockGate } from "./Lock";
 
 export function UpcomingSessions() {
   const ref = useRef<HTMLDivElement>(null);
@@ -64,6 +65,7 @@ export function UpcomingSessions() {
           </div>
         }
       />
+      <LockGate>
       <div ref={ref}
         onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}
         onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}
@@ -73,7 +75,8 @@ export function UpcomingSessions() {
           <article key={i} aria-hidden={i >= upcoming.length || undefined}
             role="button" tabIndex={i >= upcoming.length ? -1 : 0}
             onClick={() => setOpen(i % upcoming.length)}
-            onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), setOpen(i % upcoming.length))} className="group flex cursor-pointer flex-col overflow-hidden rounded-xl border border-line bg-white transition hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(15,15,30,.08)]">
+            onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), setOpen(i % upcoming.length))} className="lockable group relative flex cursor-pointer flex-col overflow-hidden rounded-xl border border-line bg-white transition hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(15,15,30,.08)]">
+            <LockBadge />
             <div className="relative aspect-video">
               <Image src={u.image} alt="" fill className="object-cover" sizes="280px" />
             </div>
@@ -95,6 +98,7 @@ export function UpcomingSessions() {
           </article>
         ))}
       </div>
+      </LockGate>
       {open !== null && <SessionModal session={upcoming[open]} onClose={() => setOpen(null)} />}
     </section>
   );

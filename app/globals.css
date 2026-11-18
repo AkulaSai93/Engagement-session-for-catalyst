@@ -34,3 +34,8 @@ body { @apply bg-bg text-ink antialiased; }
 @keyframes sheen { 0%, 60% { transform: translateX(0); } 100% { transform: translateX(450%); } }
 
 @keyframes ring-spin { to { transform: rotate(360deg); } }
+
+/* Free access ended: fade locked cards, keep lock pins vivid. */
+[data-locked] .lockable > :not(.lock-badge) { opacity: .55; filter: grayscale(1); transition: opacity .3s, filter .3s; }
+/* Seat blocked (paid access over): material stays visible but clearly dark and out of reach. */
+[data-locked="blocked"] .lockable > :not(.lock-badge) { opacity: 1; filter: brightness(.45) grayscale(.6); }

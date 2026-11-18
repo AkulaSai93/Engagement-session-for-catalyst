@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { ProfileSidebar } from "./ProfileSidebar";
 import { ReserveSeat } from "./ReserveSeat";
+import { SeatBlocked } from "./SeatBlocked";
 
 const links = ["Home", "Curriculum", "Student Journey", "ProjectBuilder Pro", "FAQs"];
 
@@ -64,6 +65,7 @@ export function Navbar() {
       </div>
 
       <ReserveSeat />
+      <SeatBlocked />
 
       {/* Mobile drawer: site links + profile menu */}
       {open && (

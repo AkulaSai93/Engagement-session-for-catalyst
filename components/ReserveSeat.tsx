@@ -1,29 +1,37 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowRight, LockOpen } from "lucide-react";
-import { freeAccess as fa } from "@/lib/data";
+import { ArrowRight, Lock, LockOpen } from "lucide-react";
+import { accessNote, freeAccess as fa } from "@/lib/data";
+import { onLockedPopup, useAccess, usePreview } from "@/lib/access";
+import { AccessEnded } from "./AccessEnded";
 import { CommunityInvite } from "./CommunityInvite";
 import { ReserveCheckout } from "./ReserveCheckout";
 import { useReserved } from "@/lib/reserved";
 
-const END = new Date(fa.startedAt).getTime() + fa.days * 86_400_000;
+const HOUR = 3_600_000;
+const TOTAL = fa.hours * HOUR;
+const DAYS = Math.ceil(fa.hours / 24);
+const END = new Date(fa.startedAt).getTime() + TOTAL;
 const pad = (n: number) => String(n).padStart(2, "0");
 
 // Ticks every second; returns time left and how far into the free period we are.
 function useCountdown() {
   const [now, setNow] = useState<number | null>(null);
+  // Preview chips: "free" counts down a fresh 48 hours from when it was picked; "ended" is at zero.
+  const p = usePreview();
+  const end = p.stage === "free" ? p.at + TOTAL : p.stage === "ended" ? 0 : END;
   useEffect(() => {
     setNow(Date.now());
     const id = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(id);
   }, []);
-  const left = now === null ? fa.days * 86_400_000 : Math.max(0, END - now);
+  const left = now === null ? TOTAL : Math.max(0, end - now);
   const s = Math.floor(left / 1000);
   return {
-    d: Math.floor(s / 86400), h: Math.floor((s % 86400) / 3600), m: Math.floor((s % 3600) / 60), sec: s % 60,
-    day: Math.min(fa.days, Math.max(1, Math.ceil(fa.days - left / 86_400_000))),
-    used: 1 - left / (fa.days * 86_400_000),
+    h: Math.floor(s / 3600), m: Math.floor((s % 3600) / 60), sec: s % 60,
+    day: Math.min(DAYS, Math.max(1, Math.ceil(DAYS - left / 86_400_000))),
+    used: 1 - left / TOTAL,
     urgent: left < 86_400_000, expired: left === 0,
   };
 }
@@ -53,8 +61,11 @@ export function ReserveSeat() {
   const { reserved, reserve } = useReserved();
   const [done, setDone] = useState(false);
   const [open, setOpen] = useState(false);
+  const [ended, setEnded] = useState(false);
+  useEffect(() => onLockedPopup((s) => s === "ended" && setEnded(true)), []);
+  const stage = useAccess();
   // Once reserved the strip disappears, but the success popup must stay until it is closed.
-  if (fa.reserved || reserved) return done ? <CommunityInvite onClose={() => setDone(false)} /> : null;
+  if (fa.reserved || reserved || (stage !== "free" && stage !== "ended")) return done ? <CommunityInvite onClose={() => setDone(false)} /> : null;
 
   return (
     <div className="relative overflow-hidden bg-black text-white">
@@ -66,17 +77,18 @@ export function ReserveSeat() {
         <div className="col-span-2 flex min-w-0 flex-col justify-center pt-2.5 md:flex-1 md:py-4 md:pr-6">
           <span className="hidden w-max items-center gap-1.5 whitespace-nowrap rounded-full bg-brand/15 md:flex px-2.5 py-1 text-[10px] font-bold uppercase tracking-[1.5px] text-brand-2 ring-1 ring-brand/40">
             <span className="relative flex size-2"><span className="absolute inset-0 animate-ping rounded-full bg-brand-2" /><span className="relative size-2 rounded-full bg-brand-2" /></span>
-            <LockOpen className="size-3.5" /> Free access unlocked<span className="md:hidden"> · {fa.days} days</span>
+            {t.expired ? <><Lock className="size-3.5" /> Free access ended</> : <><LockOpen className="size-3.5" /> Free access unlocked</>}
           </span>
           <p className="text-[16px] font-extrabold leading-tight tracking-tight md:mt-2 md:text-[24px]">
-            Your {fa.days}-Day Free Access Is{" "}
-            <span className="bg-gradient-to-r from-brand-2 to-rose-300 bg-clip-text text-transparent">Unlocked</span>
+            Your {fa.hours}-Hour Free Access {t.expired ? "Has" : "Is"}{" "}
+            <span className="bg-gradient-to-r from-brand-2 to-rose-300 bg-clip-text text-transparent">{t.expired ? "Ended" : "Unlocked"}</span>
           </p>
           <p className="mt-1.5 hidden text-[14px] leading-snug text-white/80 md:block">
             Reserve your seat for{" "}
-            <span className="rounded-md bg-brand px-1.5 py-0.5 font-bold text-white">₹{fa.price}</span>{" "}
-            to keep learning after day {fa.days}.
+            <span className="rounded-md bg-brand px-1.5 py-0.5 font-bold text-white">₹{fa.price}*</span>{" "}
+            to continue learning.
           </p>
+          <p className="mt-1.5 hidden text-[11px] leading-snug text-white/55 md:block">{accessNote}</p>
         </div>
 
         {/* Countdown: label above the flip digits */}
@@ -85,14 +97,12 @@ export function ReserveSeat() {
             <span className={`text-[10px] font-bold uppercase tracking-[1.5px] ${t.urgent ? "text-brand-2" : "text-white/80"}`}>
               {t.expired ? "Free access has ended" : "Ends in"}
             </span>
-            <span className="rounded-full bg-brand px-2 py-0.5 text-[10px] font-bold text-white">Day {t.day} of {fa.days}</span>
+            <span className="rounded-full bg-brand px-2 py-0.5 text-[10px] font-bold text-white">Day {t.day} of {DAYS}</span>
           </span>
           <span className={`text-[20px] font-bold tabular-nums leading-none md:hidden ${t.urgent ? "text-brand-2" : ""}`}>
-            {t.d}<small className="text-[11px] text-white/60">d</small> {pad(t.h)}<small className="text-[11px] text-white/60">h</small> {pad(t.m)}<small className="text-[11px] text-white/60">m</small> {pad(t.sec)}<small className="text-[11px] text-white/60">s</small>
+            {pad(t.h)}<small className="text-[11px] text-white/60">h</small> {pad(t.m)}<small className="text-[11px] text-white/60">m</small> {pad(t.sec)}<small className="text-[11px] text-white/60">s</small>
           </span>
           <div className="hidden items-start gap-2 md:flex">
-            <Flap v={t.d} label="days" urgent={t.urgent} />
-            <span className="pt-2 text-white/30">:</span>
             <Flap v={t.h} label="hrs" urgent={t.urgent} />
             <span className="pt-2 text-white/30">:</span>
             <Flap v={t.m} label="min" urgent={t.urgent} />
@@ -116,12 +126,14 @@ export function ReserveSeat() {
           </span>
           <ArrowRight className="size-5 transition group-hover:translate-x-1 md:size-7" />
         </button>
+        <p className="col-span-2 -mt-0.5 pb-2 text-[10px] leading-snug text-white/55 md:hidden">{accessNote}</p>
       </div>
 
       {/* Day progress along the bottom edge */}
       <div className="relative h-1 bg-white/10">
         <div className="h-full bg-gradient-to-r from-brand-2 to-brand shadow-[0_0_10px_rgba(225,29,72,.8)] transition-[width] duration-1000" style={{ width: `${t.used * 100}%` }} />
       </div>
+      {ended && <AccessEnded onClose={() => setEnded(false)} onReserve={() => { setEnded(false); setOpen(true); }} />}
       {open && <ReserveCheckout onClose={() => setOpen(false)}
         onPaid={() => { setOpen(false); reserve(); setDone(true); }} />}
       {done && <CommunityInvite onClose={() => setDone(false)} />}

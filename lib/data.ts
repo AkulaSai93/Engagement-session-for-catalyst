@@ -237,11 +237,35 @@ export const roadmap: {
 // SAMPLE: replace with the signed-in student's real values from your backend.
 export const freeAccess = {
   startedAt: "2026-10-12T10:00:00+05:30", // when the student signed up
-  days: 7,                                // length of free access
+  hours: 48,                              // length of free access (hours)
   reserved: false,                        // true once the ₹499 block amount is paid → hides the offer
   price: 499,
   payHref: "#razorpay",                   // Razorpay checkout / payment link (opened from the "Pay ₹499" button)
+  extraDays: 10,                          // extra access the ₹499 seat block unlocks
+  reservedAt: null as string | null,      // when the ₹499 was paid (ISO); paid access runs `extraDays` from here
+  feePaid: false,                         // true once the Year 1 course fee is paid → no locks at all
+  enrolHref: "#enrol",                    // Year 1 enrolment / fee payment page ("Enrol Now")
 };
+
+// Shown when the 10 days of paid access are over and the Year 1 fee isn't paid.
+export const seatBlocked = {
+  title: "Your Seat Is Blocked.",
+  titleAccent: "Don't Lose Momentum.",
+  body: "You've secured your seat with ₹499, but your learning access has expired. Don't miss out on building the skills that set you apart.",
+  listTitle: "Enrol in uGSOT Catalyst to:",
+  points: [
+    "Master Coding, DSA, Full Stack, Cloud & AI",
+    "Build real-world projects and a portfolio",
+    "Learn through mentorship, hackathons & open-source",
+    "Unlock internship and career opportunities",
+  ],
+  closing: "Your peers are building. It's your turn. Unlock your learning and get started.",
+  cta: "Enrol Now",
+  note: "EMI options available. Extra discounts on upfront payment.",
+};
+
+// Fine print shown wherever we ask for the ₹499 (top strip + access-ended popup).
+export const accessNote = `*₹${freeAccess.price} blocks your seat and unlocks an additional ${freeAccess.extraDays} days of access to recorded sessions and live classes.`;
 
 // ── Welcome video ────────────────────────────────────────────────────────────
 // SAMPLE: replace `videoUrl` with the real welcome video (mp4/HLS link, or a

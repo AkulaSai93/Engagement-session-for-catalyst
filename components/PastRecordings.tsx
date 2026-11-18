@@ -8,6 +8,7 @@ import { RecordingModal } from "./RecordingModal";
 import { SectionHeader } from "./SectionHeader";
 import { AllRecordings } from "./AllRecordings";
 import { CompanyLogos } from "./CompanyLogos";
+import { LockBadge } from "./Lock";
 
 export function PastRecordings() {
   const [open, setOpen] = useState<Recording | null>(null);
@@ -17,7 +18,8 @@ export function PastRecordings() {
       <div className="grid gap-4 lg:grid-cols-[1fr_1.2fr]">
         <div className="flex flex-col gap-3">
           {recordings.slice(0, 3).map((r) => (
-            <button type="button" key={r.title} onClick={() => setOpen(r)} className="flex flex-1 items-center text-left gap-3.5 rounded-xl border border-line bg-white p-2.5 transition hover:shadow-[0_8px_24px_rgba(15,15,30,.06)]">
+            <button type="button" key={r.title} onClick={() => setOpen(r)} className="lockable relative flex flex-1 items-center text-left gap-3.5 rounded-xl border border-line bg-white p-2.5 transition hover:shadow-[0_8px_24px_rgba(15,15,30,.06)]">
+              <LockBadge className="left-1 top-1 size-6" icon="size-3" />
               <div className="relative aspect-video w-24 shrink-0 overflow-hidden rounded-lg sm:w-[112px]">
                 <Image src={r.image} alt="" fill className="object-cover" sizes="112px" />
               </div>
@@ -39,7 +41,8 @@ export function PastRecordings() {
           ))}
         </div>
 
-        <button type="button" onClick={() => setOpen(f)} className="group relative order-first text-left flex min-h-[300px] items-end overflow-hidden rounded-xl p-5 text-white lg:order-last transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(15,15,30,.12)]">
+        <button type="button" onClick={() => setOpen(f)} className="lockable group relative order-first text-left flex min-h-[300px] items-end overflow-hidden rounded-xl p-5 text-white lg:order-last transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(15,15,30,.12)]">
+          <LockBadge className="right-4 top-4 size-10" icon="size-5" />
           <Image src={f.image} alt="" fill className="object-cover transition duration-500 group-hover:scale-105" sizes="(max-width:1024px) 100vw, 40vw" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent from-40% to-black/90" />
           <span className="absolute left-1/2 top-1/2 grid size-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-white/20 text-brand backdrop-blur-md transition group-hover:scale-110"><Play className="size-5 fill-current" /></span>
