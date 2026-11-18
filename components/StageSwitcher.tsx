@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { setPreview, usePreview, type Stage } from "@/lib/access";
 import { useReserved } from "@/lib/reserved";
 
@@ -11,14 +10,10 @@ const chips: { stage: Stage; label: string }[] = [
 ];
 
 // Demo/QA chips to jump between the three student stages and back.
-// Shown in development, or anywhere the URL carries ?access=… .
+// Always shown while this is a demo site. Remove <StageSwitcher /> from app/page.tsx before real students use it.
 export function StageSwitcher() {
   const { stage } = usePreview();
   const { resetPayment } = useReserved();
-  const [show, setShow] = useState(false);
-  useEffect(() => setShow(process.env.NODE_ENV !== "production" || new URLSearchParams(location.search).has("access")), []);
-  if (!show) return null;
-
   return (
     <div role="group" aria-label="Preview student stage"
       className="fixed bottom-4 left-1/2 z-[60] flex -translate-x-1/2 items-center gap-1 rounded-lg bg-ink/90 p-1 text-[12px] font-semibold text-white shadow-[0_10px_30px_rgba(0,0,0,.3)] ring-1 ring-white/10 backdrop-blur">
