@@ -56,7 +56,7 @@ export function UpcomingSessions() {
   const arrow = "grid size-10 place-items-center rounded-full border border-line bg-white text-lg transition hover:border-brand/40";
 
   return (
-    <section className="pt-7">
+    <section id="upcoming" className="scroll-mt-[calc(var(--header-h,205px)+16px)] pt-7">
       <SectionHeader title="Upcoming Sessions" sub="This week:"
         action={
           <div className="hidden gap-3 sm:flex">

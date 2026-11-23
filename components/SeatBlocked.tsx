@@ -36,7 +36,7 @@ export function SeatBlocked() {
         <Modal label="Your seat is blocked" onClose={() => setOpen(false)} className="max-w-[460px] rounded-lg!"
           closeClassName="size-8 text-dim hover:bg-bg hover:text-ink">
           <div className="px-7 pb-6 pt-8">
-            <span className="grid size-12 place-items-center rounded-full bg-gradient-to-b from-brand-2 to-brand text-white shadow-[0_6px_16px_rgba(225,29,72,.35),inset_0_1px_0_rgba(255,255,255,.35)] ring-4 ring-brand/10">
+            <span className="grid size-12 place-items-center rounded-full bg-brand text-white shadow-[0_6px_16px_rgba(225,29,72,.35),inset_0_1px_0_rgba(255,255,255,.35)] ring-4 ring-brand/10">
               <LockKeyhole className="size-5" strokeWidth={2.25} />
             </span>
             <h2 className="mt-4 text-[22px] font-bold leading-tight tracking-tight">

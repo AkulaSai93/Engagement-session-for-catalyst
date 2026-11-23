@@ -17,11 +17,11 @@ export default function EngagementPage() {
     <>
       <Navbar />
       <main className="mx-auto grid max-w-[1440px] gap-6 px-4 py-10 sm:px-20 lg:grid-cols-[284px_1fr]">
-        {/* Free window over → sessions + recordings lock. Paid 10 days over → the live class locks too (see lib/access.ts). */}
+        {/* Free window over or paid 10 days over → live class, sessions and recordings lock (see lib/access.ts). */}
         <ProfileSidebar />
         <div className="min-w-0">
           <JoinCommunity />
-          <LockGate stages={["blocked"]}><LiveBanner /></LockGate>
+          <LockGate><LiveBanner /></LockGate>
           <WhyCatalyst />
           <UpcomingSessions />
           <MerchReward />

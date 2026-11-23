@@ -81,7 +81,7 @@ export function ReserveSeat() {
           </span>
           <p className="text-[16px] font-extrabold leading-tight tracking-tight md:mt-2 md:text-[24px]">
             Your {fa.hours}-Hour Free Access {t.expired ? "Has" : "Is"}{" "}
-            <span className="bg-gradient-to-r from-brand-2 to-rose-300 bg-clip-text text-transparent">{t.expired ? "Ended" : "Unlocked"}</span>
+            <span className="text-brand-2">{t.expired ? "Ended" : "Unlocked"}</span>
           </p>
           <p className="mt-1.5 hidden text-[14px] leading-snug text-white/80 md:block">
             Reserve your seat for{" "}
@@ -131,7 +131,7 @@ export function ReserveSeat() {
 
       {/* Day progress along the bottom edge */}
       <div className="relative h-1 bg-white/10">
-        <div className="h-full bg-gradient-to-r from-brand-2 to-brand shadow-[0_0_10px_rgba(225,29,72,.8)] transition-[width] duration-1000" style={{ width: `${t.used * 100}%` }} />
+        <div className="h-full bg-brand-2 shadow-[0_0_10px_rgba(225,29,72,.8)] transition-[width] duration-1000" style={{ width: `${t.used * 100}%` }} />
       </div>
       {ended && <AccessEnded onClose={() => setEnded(false)} onReserve={() => { setEnded(false); setOpen(true); }} />}
       {open && <ReserveCheckout onClose={() => setOpen(false)}

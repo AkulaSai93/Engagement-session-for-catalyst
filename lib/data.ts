@@ -3,6 +3,7 @@ export const thumb = (name: string) => `/images/sessions/${name}.jpg`;
 export const avatar = (_n: number) => "/images/mentors/placeholder.svg";
 
 export const liveSession = {
+  isLive: true, // false when no class is running → the banner shows the next session + latest recording instead
   title: "LinkedIn",
   titleAccent: "Orientation",
   speaker: "Bose Sir",
@@ -196,6 +197,8 @@ export const recordings = [
   past("look-behind", "25 Sep 2026", "52 min"),
   past("google-maps", "22 Sep 2026", "61 min"),
 ];
+// Recording shown in the "no live class" panel (picked for its clean, bold thumbnail).
+export const spotlightRecording = recordings[2];
 // SAMPLE DATA for the "View all" popup: the real past sessions above, padded to 18 with
 // earlier editions of catalogue sessions. Replace with the real recordings list.
 const sampleDurations = ["48 min", "52 min", "61 min", "44 min", "57 min", "39 min"];
@@ -247,11 +250,18 @@ export const freeAccess = {
   enrolHref: "#enrol",                    // Year 1 enrolment / fee payment page ("Enrol Now")
 };
 
+// Top strip while the ₹499 seat is reserved (inside the 10 paid days), nudging the Year 1 enrolment.
+export const enrolment = {
+  fee: "50,000",                 // Year 1 fee shown on the strip CTA
+  classesStart: "4th January 2027",
+  body: "Your ₹499 payment has unlocked full platform access for the next 10 days. Enrol in Catalyst before your access expires to continue learning without interruption.",
+};
+
 // Shown when the 10 days of paid access are over and the Year 1 fee isn't paid.
 export const seatBlocked = {
   title: "Your Seat Is Blocked.",
   titleAccent: "Don't Lose Momentum.",
-  body: "You've secured your seat with ₹499, but your learning access has expired. Don't miss out on building the skills that set you apart.",
+  body: "You've secured your seat with ₹499, but your learning access has expired.",
   listTitle: "Enrol in uGSOT Catalyst to:",
   points: [
     "Master Coding, DSA, Full Stack, Cloud & AI",
@@ -259,13 +269,13 @@ export const seatBlocked = {
     "Learn through mentorship, hackathons & open-source",
     "Unlock internship and career opportunities",
   ],
-  closing: "Your peers are building. It's your turn. Unlock your learning and get started.",
+  closing: "Don't miss out on building the skills that set you apart",
   cta: "Enrol Now",
   note: "EMI options available. Extra discounts on upfront payment.",
 };
 
 // Fine print shown wherever we ask for the ₹499 (top strip + access-ended popup).
-export const accessNote = `*₹${freeAccess.price} blocks your seat and unlocks an additional ${freeAccess.extraDays} days of access to recorded sessions and live classes.`;
+export const accessNote = `*₹${freeAccess.price} reserves your seat and unlocks an additional ${freeAccess.extraDays} days of access to recorded sessions and live classes.`;
 
 // ── Welcome video ────────────────────────────────────────────────────────────
 // SAMPLE: replace `videoUrl` with the real welcome video (mp4/HLS link, or a
